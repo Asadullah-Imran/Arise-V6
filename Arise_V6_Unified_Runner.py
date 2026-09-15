@@ -531,13 +531,27 @@ def main():
 
         anno_df = pd.read_csv(anno_file, index_col=0)
         gt_col = "manual-anno" if is_human else "cluster"
-        ground_truth = anno_df[gt_col].values
-        num_clusters = len(np.unique(ground_truth))
 
-        print(f"Loaded {ds_name}: {adata_rna.n_obs} spots, {num_clusters} ground-truth clusters.")
-
-        # Build base graphs
+        # Build base graphs (applies QC filtering and normalizations)
         graph_data = build_multimodal_graphs(adata_rna, adata_aux, is_human=is_human, device=args.device)
+
+        # Align ground-truth annotations to remaining filtered spots in adata_rna
+        if adata_rna.obs_names[0] in anno_df.index:
+            ground_truth = anno_df.loc[adata_rna.obs_names, gt_col].values
+        elif 'cell' in anno_df.columns and adata_rna.obs_names[0] in anno_df['cell'].values:
+            anno_df = anno_df.set_index('cell')
+            ground_truth = anno_df.loc[adata_rna.obs_names, gt_col].values
+        elif len(anno_df) == adata_rna.n_obs:
+            ground_truth = anno_df[gt_col].values
+        else:
+            common_obs = [x for x in adata_rna.obs_names if x in anno_df.index]
+            if len(common_obs) == adata_rna.n_obs:
+                ground_truth = anno_df.loc[adata_rna.obs_names, gt_col].values
+            else:
+                ground_truth = anno_df.reindex(adata_rna.obs_names)[gt_col].values
+
+        num_clusters = len(np.unique(ground_truth))
+        print(f"Loaded & Preprocessed {ds_name}: {adata_rna.n_obs} spots (Graph nodes: {graph_data.x_RNA.shape[0]}), {num_clusters} ground-truth clusters.")
 
         # Precompute Motif Matrices if motif variants are requested
         motif_3_computed = False
