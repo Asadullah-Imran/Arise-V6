@@ -1,0 +1,72 @@
+import json
+
+def create_colab_notebook():
+    nb = {
+        "nbformat": 4,
+        "nbformat_minor": 0,
+        "metadata": {
+            "colab": {
+                "provenance": [],
+                "gpuType": "T4"
+            },
+            "kernelspec": {
+                "name": "python3",
+                "display_name": "Python 3"
+            },
+            "accelerator": "GPU"
+        },
+        "cells": [
+            {
+                "cell_type": "markdown",
+                "metadata": {},
+                "source": [
+                    "# 🧬 ARISE-V6 Systematic Component Ablation Suite (Colab GPU Runner)\n",
+                    "\n",
+                    "This notebook runs systematic component ablations centered on **ARISE-V6 (ARISE + 2-Stage Consensus DEC)** as the base anchor across 4 architectural tracks (26 total variants):\n",
+                    "1. **`fusion-ablation`** (`F0` - `F6`): Linear, Local-Global, Variance Weight, Graph-Masked Cross-Attn, Bilinear Tensor, Gated Multi-Modal, CAGE Bidirectional QKV Cross-Fusion\n",
+                    "2. **`loss-ablation`** (`L0` - `L5`): Standard V6, Dense Relational, Sinkhorn OT, Spatial InfoNCE, Spatial Potts, Uncertainty Balancing\n",
+                    "3. **`encoder-ablation`** (`E0` - `E5`): Standard GCN, Global Transformer, 3-Node Motif ($M_3$), 4-Node Cycle Motif ($M_4$), Heat Diffusion Wavelet, GATv2 Attention\n",
+                    "4. **`contrastive-ablation`** (`C0` - `C6`): Base V6, GATCL Cross-Modal CL, Proust DGI Bilinear CL, Spatial Neighbor InfoNCE, Cluster-Prototype InfoNCE, Graph Dual-View Consistency, Hybrid Multi-Level CL\n"
+                ]
+            },
+            {
+                "cell_type": "code",
+                "execution_count": None,
+                "metadata": {},
+                "outputs": [],
+                "source": [
+                    "# @title 📦 1. Install Dependencies & Clone/Mount Repo\n",
+                    "!pip install -q scanpy anndata scikit-misc torch-geometric gdown\n",
+                    "import torch\n",
+                    "print(f\"CUDA Available: {torch.cuda.is_available()}\")\n",
+                    "if torch.cuda.is_available():\n",
+                    "    print(f\"Device Name: {torch.cuda.get_device_name(0)}\")"
+                ]
+            },
+            {
+                "cell_type": "code",
+                "execution_count": None,
+                "metadata": {},
+                "outputs": [],
+                "source": [
+                    "# @title 🚀 2. Execute Ablation Runs (Form Interface)\n",
+                    "Track = \"all\" #@param [\"all\", \"fusion\", \"loss\", \"encoder\", \"contrastive\"]\n",
+                    "Variant = \"all\" #@param [\"all\", \"F0_Linear\", \"F1_LocalGlobal\", \"F2_VarianceWeight\", \"F3_SpatialCrossAttention\", \"F4_BilinearTensor\", \"F5_GatedMultiModal\", \"F6_QKVCrossFusion\", \"L0_Standard\", \"L1_DenseRelational\", \"L2_SinkhornOT\", \"L3_SpatialInfoNCE\", \"L4_SpatialPotts\", \"L5_UncertaintyBalancing\", \"E0_StandardGCN\", \"E1_GlobalTransformer\", \"E2_TriangularMotif\", \"E3_HigherOrderMotif\", \"E4_HeatWavelet\", \"E5_GATAttention\", \"C0_BaseV6\", \"C1_CrossModalCL\", \"C2_ProustDGI\", \"C3_SpatialNeighborCL\", \"C4_ClusterAwareCL\", \"C5_GraphAugConsistency\", \"C6_HybridMultiLevelCL\"]\n",
+                    "Dataset = \"all\" #@param [\"all\", \"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"0,1\", \"2,3,4,5\"]\n",
+                    "Epochs = 400 #@param {type:\"integer\"}\n",
+                    "Pretrain_Epochs = 250 #@param {type:\"integer\"}\n",
+                    "Finetune_Epochs = 150 #@param {type:\"integer\"}\n",
+                    "\n",
+                    "!python Arise_V6_Unified_Runner.py --track {Track} --variant {Variant} --dataset {Dataset} --epochs {Epochs} --pretrain_epochs {Pretrain_Epochs} --finetune_epochs {Finetune_Epochs} --seeds 42 1234 2024 --device cuda\n"
+                ]
+            }
+        ]
+    }
+    
+    out_path = '/Users/imran/Developer/FYDP/ARISE/Arise-V6/Arise_V6_Ablation_Colab.ipynb'
+    with open(out_path, 'w') as f:
+        json.dump(nb, f, indent=2)
+    print(f"Created Colab Notebook at: {out_path}")
+
+if __name__ == '__main__':
+    create_colab_notebook()
