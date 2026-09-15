@@ -417,23 +417,45 @@ def train_and_evaluate_variant(variant: str, model, graph_data, ground_truth, nu
         'pretrain_best_ari_epoch': pretrain_best_ari_epoch
     })
 
-    # End-of-seed detailed summary box
-    print("\n" + "-" * 75)
-    print(f"📊 SUMMARY | Variant: {variant} | Seed: {seed} | Runtime: {elapsed_time_sec:.2f}s")
-    print("-" * 75)
-    print(f"  🎯 DEC Best Silhouette      : {best_dec_sil:.4f} (Epoch {best_dec_sil_epoch}/{finetune_epochs}) -> Corresponding ARI: {best_dec_sil_corr_ari:.4f}")
-    print(f"  🏆 DEC Best ARI             : {best_dec_ari:.4f} (Epoch {best_dec_ari_epoch}/{finetune_epochs}) -> Corresponding Sil: {best_dec_ari_corr_sil:.4f}")
-    print(f"  🏁 DEC Last Epoch ({finetune_epochs:d}/{finetune_epochs:d})  : ARI: {last_epoch_ari:.4f} | Silhouette: {last_epoch_sil:.4f}")
-    print(f"  🌱 Pre-train Best Silhouette: {pretrain_best_sil:.4f} (Epoch {pretrain_best_sil_epoch}/{pretrain_epochs}) -> Corresponding ARI: {pretrain_best_sil_corr_ari:.4f}")
-    print(f"  🌿 Pre-train Best ARI       : {pretrain_best_ari:.4f} (Epoch {pretrain_best_ari_epoch}/{pretrain_epochs}) -> Corresponding Sil: {pretrain_best_ari_corr_sil:.4f}")
-    print("-" * 75 + "\n")
+    # End-of-seed detailed ASCII table summary
+    header_title = f"📊 SEED SUMMARY: {variant} | Seed: {seed} | Dataset: {getattr(args, 'current_ds_name', 'Benchmark')}"
+    print("\n" + "┌" + "─" * 86 + "┐")
+    print(f"│ {header_title:<84} │")
+    print("├" + "─" * 31 + "┬" + "─" * 15 + "┬" + "─" * 12 + "┬" + "─" * 12 + "┬" + "─" * 12 + "┤")
+    print(f"│ {'Evaluation Category':<31} │ {'Phase':<15} │ {'Epoch':<12} │ {'Silhouette':<12} │ {'ARI':<12} │")
+    print("├" + "─" * 31 + "┼" + "─" * 15 + "┼" + "─" * 12 + "┼" + "─" * 12 + "┼" + "─" * 12 + "┤")
+    print(f"│ {'🎯 DEC Best Silhouette (Selected)':<31} │ {'DEC Fine-tune':<15} │ {f'Ep {best_dec_sil_epoch}/{finetune_epochs}':<12} │ {best_dec_sil:<12.4f} │ {best_dec_sil_corr_ari:<12.4f} │")
+    print(f"│ {'🏆 DEC Best ARI Observed':<31} │ {'DEC Fine-tune':<15} │ {f'Ep {best_dec_ari_epoch}/{finetune_epochs}':<12} │ {best_dec_ari_corr_sil:<12.4f} │ {best_dec_ari:<12.4f} │")
+    print(f"│ {'🏁 DEC Last Epoch (Terminal)':<31} │ {'DEC Fine-tune':<15} │ {f'Ep {finetune_epochs}/{finetune_epochs}':<12} │ {last_epoch_sil:<12.4f} │ {last_epoch_ari:<12.4f} │")
+    print(f"│ {'🌱 Pre-train Best Silhouette':<31} │ {'Pre-training':<15} │ {f'Ep {pretrain_best_sil_epoch}/{pretrain_epochs}':<12} │ {pretrain_best_sil:<12.4f} │ {pretrain_best_sil_corr_ari:<12.4f} │")
+    print(f"│ {'🌿 Pre-train Best ARI':<31} │ {'Pre-training':<15} │ {f'Ep {pretrain_best_ari_epoch}/{pretrain_epochs}':<12} │ {pretrain_best_ari_corr_sil:<12.4f} │ {pretrain_best_ari:<12.4f} │")
+    print("├" + "─" * 86 + "┤")
+    print(f"│ ⏱️  Total Training Runtime: {elapsed_time_sec:6.2f}s{' ' * 56}│")
+    print("└" + "─" * 86 + "┘\n")
 
     return final_metrics, final_emb, final_lab
 
 
 # ----------------------------------------------------------------------
-# 6. CLI ENTRYPOINT
+# 6. DUAL LOGGER & CLI ENTRYPOINT
 # ----------------------------------------------------------------------
+class DualLogger:
+    """Tee logger writing simultaneously to stdout and log file."""
+    def __init__(self, filepath: str):
+        self.terminal = sys.stdout
+        self.logfile = open(filepath, "a", encoding="utf-8")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.terminal.flush()
+        self.logfile.write(message)
+        self.logfile.flush()
+
+    def flush(self):
+        self.terminal.flush()
+        self.logfile.flush()
+
+
 def main():
     parser = argparse.ArgumentParser(description="ARISE-V6 Systematic Component Ablation Runner")
     parser.add_argument('--track', type=str, default='all', choices=['all', 'fusion', 'loss', 'encoder', 'contrastive'],
@@ -455,6 +477,10 @@ def main():
     args = parser.parse_args()
     os.makedirs(args.out_dir, exist_ok=True)
 
+    # Enable Dual Logging (Console + Log file)
+    log_path = os.path.join(args.out_dir, "ablation_suite.log")
+    sys.stdout = DualLogger(log_path)
+
     # Determine variants to execute
     if args.variant.lower() != 'all':
         raw_vars = args.variant.replace(' ', ',').split(',')
@@ -472,17 +498,20 @@ def main():
 
     dataset_indices = list(range(len(BENCHMARK_DATASETS))) if args.dataset.lower() == 'all' else [int(i.strip()) for i in args.dataset.split(',') if i.strip()]
 
-    print("=" * 80)
-    print(f"Starting ARISE-V6 Ablation Suite | Track={args.track} | Variants={variants_to_run} | Seeds={args.seeds} | Epochs={args.epochs}")
-    print("=" * 80)
+    print("=" * 88)
+    print(f"🧬 STARTING ARISE-V6 ABLATION SUITE | Track={args.track} | Epochs={args.epochs} (Pre={args.pretrain_epochs}, DEC={args.finetune_epochs})")
+    print(f"🎯 Variants ({len(variants_to_run)}): {variants_to_run}")
+    print(f"🌱 Seeds: {args.seeds} | Device: {args.device} | Log file: {log_path}")
+    print("=" * 88)
 
     all_results = []
 
     for ds_idx in dataset_indices:
         ds_name, ds_url = BENCHMARK_DATASETS[ds_idx]
-        print("\n" + "=" * 80)
+        args.current_ds_name = ds_name
+        print("\n" + "=" * 88)
         print(f"================== DATASET: {ds_name} (Index {ds_idx}) ==================")
-        print("=" * 80)
+        print("=" * 88)
 
         local_dir = download_dataset_if_needed(ds_name, ds_url, args.data_dir)
         is_human = ds_name.startswith("10x")
@@ -520,9 +549,9 @@ def main():
                 print(f"Warning: Variant {variant} not in registry. Skipping.")
                 continue
 
-            print("\n" + "-" * 60)
+            print("\n" + "-" * 70)
             print(f"---------- VARIANT: {variant} on {ds_name} ----------")
-            print("-" * 60)
+            print("-" * 70)
 
             # Apply motif graph augmentation if required
             var_graph_data = graph_data.clone()
@@ -579,15 +608,18 @@ def main():
     df = pd.DataFrame(all_results)
     out_csv = os.path.join(args.out_dir, "arise_v6_ablation_results.csv")
     df.to_csv(out_csv, index=False)
-    print("\n" + "=" * 80)
+    print("\n" + "=" * 88)
     print(f"✅ Ablation Suite Completed! Full Results exported to: {out_csv}")
-    print("=" * 80)
+    print(f"📄 Full Execution Log saved to: {log_path}")
+    print("=" * 88)
 
     # Print Summary Table
     if not df.empty:
+        pd.set_option('display.max_columns', None)
+        pd.set_option('display.width', 1000)
         metric_cols = [c for c in ['best_dec_sil', 'best_dec_sil_corr_ari', 'best_dec_ari', 'best_dec_ari_corr_sil', 'last_epoch_ari', 'pretrain_best_sil', 'pretrain_best_sil_corr_ari', 'train_time_sec'] if c in df.columns]
         summary = df.groupby(['track', 'variant'])[metric_cols].agg(['mean', 'std'])
-        print("\n🏆 Consolidated V6 Ablation Performance Summary:")
+        print("\n🏆 Consolidated V6 Ablation Performance Summary (Mean ± Std):")
         print(summary)
 
 
