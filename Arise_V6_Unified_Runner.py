@@ -618,9 +618,19 @@ def main():
                 all_results.append(record)
                 print(f">> [RESULT] {ds_name} | {variant} | Seed {seed} => DEC Best Sil: {metrics['best_dec_sil']:.4f} (Corr ARI: {metrics['best_dec_sil_corr_ari']:.4f}) | DEC Best ARI: {metrics['best_dec_ari']:.4f} (Corr Sil: {metrics['best_dec_ari_corr_sil']:.4f}) | Last Ep ARI: {metrics['last_epoch_ari']:.4f} | Time: {metrics['train_time_sec']:.1f}s")
 
-    # Export final results
-    df = pd.DataFrame(all_results)
+    # Export final results (merge with existing CSV if resuming)
+    new_df = pd.DataFrame(all_results)
     out_csv = os.path.join(args.out_dir, "arise_v6_ablation_results.csv")
+    if os.path.exists(out_csv):
+        try:
+            prev_df = pd.read_csv(out_csv)
+            df = pd.concat([prev_df, new_df], ignore_index=True)
+            df = df.drop_duplicates(subset=['dataset', 'variant', 'seed'], keep='last')
+        except Exception:
+            df = new_df
+    else:
+        df = new_df
+
     df.to_csv(out_csv, index=False)
     print("\n" + "=" * 88)
     print(f"✅ Ablation Suite Completed! Full Results exported to: {out_csv}")
