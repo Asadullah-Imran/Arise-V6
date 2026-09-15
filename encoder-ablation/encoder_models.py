@@ -11,7 +11,11 @@ from encoder_modules import (
     StandardGCNEncoder,
     TransformerTokenEncoder,
     HeatDiffusionWaveletGraph,
-    GATv2ResidualEncoder
+    GATv2ResidualEncoder,
+    compute_3_node_motifs,
+    blend_3_node_motifs,
+    compute_4_node_cycle_motifs,
+    blend_higher_order_motifs
 )
 
 # Shared Loss & DEC distribution helpers
