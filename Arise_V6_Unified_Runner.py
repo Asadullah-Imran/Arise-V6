@@ -280,13 +280,23 @@ def run_kmeans_clustering(embeddings: np.ndarray, num_clusters: int, seed: int =
 # 5. UNIFIED TWO-STAGE DEC ABLATION RUNNER
 # ----------------------------------------------------------------------
 def train_and_evaluate_variant(variant: str, model, graph_data, ground_truth, num_clusters: int, args, seed: int):
+    start_time = time.time()
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
-    best_sil = -1.0
-    best_embeddings = None
-    best_labels = None
 
     pretrain_epochs = args.pretrain_epochs if args.pretrain_epochs is not None else int(args.epochs * 0.625)
     finetune_epochs = args.finetune_epochs if args.finetune_epochs is not None else (args.epochs - pretrain_epochs)
+
+    # ------------------------------------------------------------------
+    # Stage 1 Trackers (Pre-training)
+    # ------------------------------------------------------------------
+    pretrain_best_sil = -1.0
+    pretrain_best_sil_epoch = 0
+    pretrain_best_sil_corr_ari = -1.0
+    pretrain_best_ari = -1.0
+    pretrain_best_ari_epoch = 0
+    pretrain_best_ari_corr_sil = -1.0
+    pretrain_best_embeddings = None
+    pretrain_best_labels = None
 
     # STAGE 1: Pre-training Representation Learning
     model.train()
@@ -306,20 +316,43 @@ def train_and_evaluate_variant(variant: str, model, graph_data, ground_truth, nu
         pred_labels = run_kmeans_clustering(emb, num_clusters, seed=seed)
         metrics = compute_all_metrics(ground_truth, pred_labels, emb)
         sil = metrics['Silhouette']
+        ari = metrics['ARI']
+        nmi = metrics['NMI']
 
-        if sil > best_sil:
-            best_sil = sil
-            best_embeddings = emb.copy()
-            best_labels = pred_labels.copy()
+        if sil > pretrain_best_sil:
+            pretrain_best_sil = sil
+            pretrain_best_sil_epoch = epoch + 1
+            pretrain_best_sil_corr_ari = ari
+            pretrain_best_embeddings = emb.copy()
+            pretrain_best_labels = pred_labels.copy()
 
+        if ari > pretrain_best_ari:
+            pretrain_best_ari = ari
+            pretrain_best_ari_epoch = epoch + 1
+            pretrain_best_ari_corr_sil = sil
+
+        # Show score every 50 epochs, first epoch, and last pretrain epoch
         if (epoch + 1) % 50 == 0 or epoch == 0 or epoch == pretrain_epochs - 1:
-            print(f"[{variant} | Seed {seed}] Pre-train Epoch {epoch+1:3d}/{pretrain_epochs} | Loss: {loss.item():.4f} | ARI: {metrics['ARI']:.4f} | NMI: {metrics['NMI']:.4f} | Sil: {sil:.4f}")
+            print(f"[{variant} | Seed {seed}] Pre-train Epoch {epoch+1:3d}/{pretrain_epochs} | Loss: {loss.item():.4f} | ARI: {ari:.4f} | NMI: {nmi:.4f} | Sil: {sil:.4f}")
 
-    # STAGE 2: Consensus DEC Fine-Tuning
+    # ------------------------------------------------------------------
+    # Stage 2 Trackers (DEC Fine-Tuning)
+    # ------------------------------------------------------------------
+    best_dec_sil = -1.0
+    best_dec_sil_epoch = 0
+    best_dec_sil_corr_ari = -1.0
+    best_dec_ari = -1.0
+    best_dec_ari_epoch = 0
+    best_dec_ari_corr_sil = -1.0
+    best_dec_embeddings = None
+    best_dec_labels = None
+    last_epoch_ari = -1.0
+    last_epoch_sil = -1.0
+
     if finetune_epochs > 0:
-        print(f"[{variant} | Seed {seed}] Initializing Cluster Centers from best pre-train representation...")
+        print(f"[{variant} | Seed {seed}] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: {pretrain_best_sil:.4f} @ Ep {pretrain_best_sil_epoch})...")
         kmeans = KMeans(n_clusters=num_clusters, n_init=10, random_state=seed)
-        kmeans.fit(best_embeddings)
+        kmeans.fit(pretrain_best_embeddings)
         model.set_cluster_centers(kmeans.cluster_centers_)
 
         model.train()
@@ -336,17 +369,66 @@ def train_and_evaluate_variant(variant: str, model, graph_data, ground_truth, nu
 
             metrics = compute_all_metrics(ground_truth, pred_labels, emb)
             sil = metrics['Silhouette']
+            ari = metrics['ARI']
+            nmi = metrics['NMI']
 
-            if sil > best_sil:
-                best_sil = sil
-                best_embeddings = emb.copy()
-                best_labels = pred_labels.copy()
+            last_epoch_ari = ari
+            last_epoch_sil = sil
 
-            if (epoch + 1) % 50 == 0 or epoch == finetune_epochs - 1:
-                print(f"[{variant} | Seed {seed}] DEC Fine-tune Epoch {epoch+1:3d}/{finetune_epochs} | Loss: {loss.item():.4f} | KL: {loss_dict.get('loss_kl', 0.0):.4f} | ARI: {metrics['ARI']:.4f} | NMI: {metrics['NMI']:.4f} | Sil: {sil:.4f}")
+            # Model selection: best Silhouette score strictly from DEC fine-tuning
+            if sil > best_dec_sil:
+                best_dec_sil = sil
+                best_dec_sil_epoch = epoch + 1
+                best_dec_sil_corr_ari = ari
+                best_dec_embeddings = emb.copy()
+                best_dec_labels = pred_labels.copy()
 
-    final_metrics = compute_all_metrics(ground_truth, best_labels, best_embeddings)
-    return final_metrics, best_embeddings, best_labels
+            if ari > best_dec_ari:
+                best_dec_ari = ari
+                best_dec_ari_epoch = epoch + 1
+                best_dec_ari_corr_sil = sil
+
+            # Show score every 50 epochs, first epoch, and last DEC epoch
+            if (epoch + 1) % 50 == 0 or epoch == 0 or epoch == finetune_epochs - 1:
+                print(f"[{variant} | Seed {seed}] DEC Fine-tune Epoch {epoch+1:3d}/{finetune_epochs} | Loss: {loss.item():.4f} | KL: {loss_dict.get('loss_kl', 0.0):.4f} | ARI: {ari:.4f} | NMI: {nmi:.4f} | Sil: {sil:.4f}")
+
+    elapsed_time_sec = time.time() - start_time
+    
+    # Final representation: selected based on highest DEC Silhouette score
+    final_emb = best_dec_embeddings if best_dec_embeddings is not None else pretrain_best_embeddings
+    final_lab = best_dec_labels if best_dec_labels is not None else pretrain_best_labels
+    final_metrics = compute_all_metrics(ground_truth, final_lab, final_emb)
+
+    # Detailed record package
+    final_metrics.update({
+        'train_time_sec': round(elapsed_time_sec, 2),
+        'best_dec_sil': round(best_dec_sil, 4),
+        'best_dec_sil_epoch': best_dec_sil_epoch,
+        'best_dec_sil_corr_ari': round(best_dec_sil_corr_ari, 4),
+        'best_dec_ari': round(best_dec_ari, 4),
+        'best_dec_ari_epoch': best_dec_ari_epoch,
+        'best_dec_ari_corr_sil': round(best_dec_ari_corr_sil, 4),
+        'last_epoch_ari': round(last_epoch_ari, 4),
+        'last_epoch_sil': round(last_epoch_sil, 4),
+        'pretrain_best_sil': round(pretrain_best_sil, 4),
+        'pretrain_best_sil_epoch': pretrain_best_sil_epoch,
+        'pretrain_best_sil_corr_ari': round(pretrain_best_sil_corr_ari, 4),
+        'pretrain_best_ari': round(pretrain_best_ari, 4),
+        'pretrain_best_ari_epoch': pretrain_best_ari_epoch
+    })
+
+    # End-of-seed detailed summary box
+    print("\n" + "-" * 75)
+    print(f"📊 SUMMARY | Variant: {variant} | Seed: {seed} | Runtime: {elapsed_time_sec:.2f}s")
+    print("-" * 75)
+    print(f"  🎯 DEC Best Silhouette      : {best_dec_sil:.4f} (Epoch {best_dec_sil_epoch}/{finetune_epochs}) -> Corresponding ARI: {best_dec_sil_corr_ari:.4f}")
+    print(f"  🏆 DEC Best ARI             : {best_dec_ari:.4f} (Epoch {best_dec_ari_epoch}/{finetune_epochs}) -> Corresponding Sil: {best_dec_ari_corr_sil:.4f}")
+    print(f"  🏁 DEC Last Epoch ({finetune_epochs:d}/{finetune_epochs:d})  : ARI: {last_epoch_ari:.4f} | Silhouette: {last_epoch_sil:.4f}")
+    print(f"  🌱 Pre-train Best Silhouette: {pretrain_best_sil:.4f} (Epoch {pretrain_best_sil_epoch}/{pretrain_epochs}) -> Corresponding ARI: {pretrain_best_sil_corr_ari:.4f}")
+    print(f"  🌿 Pre-train Best ARI       : {pretrain_best_ari:.4f} (Epoch {pretrain_best_ari_epoch}/{pretrain_epochs}) -> Corresponding Sil: {pretrain_best_ari_corr_sil:.4f}")
+    print("-" * 75 + "\n")
+
+    return final_metrics, final_emb, final_lab
 
 
 # ----------------------------------------------------------------------
@@ -491,7 +573,7 @@ def main():
                     **metrics
                 }
                 all_results.append(record)
-                print(f">> [RESULT] {ds_name} | {variant} | Seed {seed} => ARI: {metrics['ARI']:.4f} | NMI: {metrics['NMI']:.4f} | Sil: {metrics['Silhouette']:.4f}")
+                print(f">> [RESULT] {ds_name} | {variant} | Seed {seed} => DEC Best Sil: {metrics['best_dec_sil']:.4f} (Corr ARI: {metrics['best_dec_sil_corr_ari']:.4f}) | DEC Best ARI: {metrics['best_dec_ari']:.4f} (Corr Sil: {metrics['best_dec_ari_corr_sil']:.4f}) | Last Ep ARI: {metrics['last_epoch_ari']:.4f} | Time: {metrics['train_time_sec']:.1f}s")
 
     # Export final results
     df = pd.DataFrame(all_results)
@@ -503,7 +585,8 @@ def main():
 
     # Print Summary Table
     if not df.empty:
-        summary = df.groupby(['track', 'variant'])[['ARI', 'NMI', 'Silhouette']].agg(['mean', 'std'])
+        metric_cols = [c for c in ['best_dec_sil', 'best_dec_sil_corr_ari', 'best_dec_ari', 'best_dec_ari_corr_sil', 'last_epoch_ari', 'pretrain_best_sil', 'pretrain_best_sil_corr_ari', 'train_time_sec'] if c in df.columns]
+        summary = df.groupby(['track', 'variant'])[metric_cols].agg(['mean', 'std'])
         print("\n🏆 Consolidated V6 Ablation Performance Summary:")
         print(summary)
 
