@@ -1,0 +1,1290 @@
+========================================================================================
+🧬 STARTING ARISE-V6 ABLATION SUITE | Track=fusion | Epochs=400 (Pre=250, DEC=200)
+🎯 Variants (7): ['F0_Linear', 'F1_LocalGlobal', 'F2_VarianceWeight', 'F3_SpatialCrossAttention', 'F4_BilinearTensor', 'F5_GatedMultiModal', 'F6_QKVCrossFusion']
+🌱 Seeds: [42, 1234, 2024] | Device: cuda | Log file: results_v6_ablation/ablation_suite.log
+========================================================================================
+
+========================================================================================
+================== DATASET: 10x_human_lymph_node_A1 (Index 0) ==================
+========================================================================================
+Downloading dataset files for 10x_human_lymph_node_A1...
+Retrieving folder contents
+Processing file 1p1EllZRpgEEOEP6T5zWnv3kvJmEgJXLm adata_ADT.h5ad
+Processing file 19kW58NNMJXSPDBFCYP6RfrgSECyJhLbL adata_RNA.h5ad
+Processing file 1SlFY5iiFyamiqa6SfmDKHb-zy512ygMA annotation.csv
+Retrieving folder contents completed
+Building directory structure
+Building directory structure completed
+Downloading...
+From: https://drive.google.com/uc?id=1p1EllZRpgEEOEP6T5zWnv3kvJmEgJXLm
+To: /kaggle/working/Arise-V6/data/10x_human_lymph_node_A1/adata_ADT.h5ad
+100%|███████████████████████████████████████| 1.14M/1.14M [00:00<00:00, 102MB/s]
+Downloading...
+From: https://drive.google.com/uc?id=19kW58NNMJXSPDBFCYP6RfrgSECyJhLbL
+To: /kaggle/working/Arise-V6/data/10x_human_lymph_node_A1/adata_RNA.h5ad
+100%|██████████████████████████████████████| 56.6M/56.6M [00:01<00:00, 51.9MB/s]
+Downloading...
+From: https://drive.google.com/uc?id=1SlFY5iiFyamiqa6SfmDKHb-zy512ygMA
+To: /kaggle/working/Arise-V6/data/10x_human_lymph_node_A1/annotation.csv
+100%|█████████████████████████████████████████| 114k/114k [00:00<00:00, 105MB/s]
+Download completed
+Loaded 10x_human_lymph_node_A1: 3484 spots, 10 ground-truth clusters.
+
+----------------------------------------------------------------------
+---------- VARIANT: F0_Linear on 10x_human_lymph_node_A1 ----------
+----------------------------------------------------------------------
+[F0_Linear | Seed 42] Pre-train Epoch   1/250 | Loss: 477.1253 | ARI: 0.2296 | NMI: 0.3361 | Sil: 0.1174
+[F0_Linear | Seed 42] Pre-train Epoch  50/250 | Loss: 184.3604 | ARI: 0.2604 | NMI: 0.3966 | Sil: 0.2266
+[F0_Linear | Seed 42] Pre-train Epoch 100/250 | Loss: 135.5878 | ARI: 0.2780 | NMI: 0.3875 | Sil: 0.1742
+[F0_Linear | Seed 42] Pre-train Epoch 150/250 | Loss: 120.0629 | ARI: 0.2289 | NMI: 0.3717 | Sil: 0.1140
+[F0_Linear | Seed 42] Pre-train Epoch 200/250 | Loss: 112.6178 | ARI: 0.2613 | NMI: 0.3868 | Sil: 0.1107
+[F0_Linear | Seed 42] Pre-train Epoch 250/250 | Loss: 108.5664 | ARI: 0.2628 | NMI: 0.3902 | Sil: 0.1090
+[F0_Linear | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2736 @ Ep 31)...
+[F0_Linear | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 111.9209 | KL: 0.3205 | ARI: 0.2414 | NMI: 0.3762 | Sil: 0.0886
+[F0_Linear | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 108.6655 | KL: 0.3103 | ARI: 0.2470 | NMI: 0.3805 | Sil: 0.0823
+[F0_Linear | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 105.9200 | KL: 0.3067 | ARI: 0.2579 | NMI: 0.3834 | Sil: 0.0753
+[F0_Linear | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 103.6377 | KL: 0.2993 | ARI: 0.2732 | NMI: 0.3869 | Sil: 0.0640
+[F0_Linear | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 101.6499 | KL: 0.2883 | ARI: 0.2854 | NMI: 0.3891 | Sil: 0.0524
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F0_Linear | Seed: 42 | Dataset: 10x_human_lymph_node_A1              │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 5/200     │ 0.0894       │ 0.2410       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 200/200   │ 0.0524       │ 0.2854       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0524       │ 0.2854       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 31/250    │ 0.2736       │ 0.2468       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 148/250   │ 0.1475       │ 0.2811       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 151.97s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F0_Linear | Seed 42 => DEC Best Sil: 0.0894 (Corr ARI: 0.2410) | DEC Best ARI: 0.2854 (Corr Sil: 0.0524) | Last Ep ARI: 0.2854 | Time: 152.0s
+[F0_Linear | Seed 1234] Pre-train Epoch   1/250 | Loss: 477.0130 | ARI: 0.2049 | NMI: 0.3111 | Sil: 0.1027
+[F0_Linear | Seed 1234] Pre-train Epoch  50/250 | Loss: 183.9674 | ARI: 0.2267 | NMI: 0.3680 | Sil: 0.2256
+[F0_Linear | Seed 1234] Pre-train Epoch 100/250 | Loss: 134.8217 | ARI: 0.2360 | NMI: 0.3741 | Sil: 0.1501
+[F0_Linear | Seed 1234] Pre-train Epoch 150/250 | Loss: 118.9365 | ARI: 0.2327 | NMI: 0.3753 | Sil: 0.1205
+[F0_Linear | Seed 1234] Pre-train Epoch 200/250 | Loss: 112.2631 | ARI: 0.2669 | NMI: 0.3995 | Sil: 0.1193
+[F0_Linear | Seed 1234] Pre-train Epoch 250/250 | Loss: 108.6929 | ARI: 0.2237 | NMI: 0.3712 | Sil: 0.1107
+[F0_Linear | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2770 @ Ep 24)...
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 112.0543 | KL: 0.3157 | ARI: 0.2567 | NMI: 0.3726 | Sil: 0.0704
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 108.7770 | KL: 0.2998 | ARI: 0.2824 | NMI: 0.3847 | Sil: 0.0540
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 106.1091 | KL: 0.2971 | ARI: 0.3068 | NMI: 0.3856 | Sil: 0.0331
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 103.5914 | KL: 0.2863 | ARI: 0.3131 | NMI: 0.3840 | Sil: 0.0139
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 101.8541 | KL: 0.2701 | ARI: 0.3141 | NMI: 0.3859 | Sil: -0.0027
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F0_Linear | Seed: 1234 | Dataset: 10x_human_lymph_node_A1            │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 2/200     │ 0.0825       │ 0.2551       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 170/200   │ 0.0064       │ 0.3172       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ -0.0027      │ 0.3141       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 24/250    │ 0.2770       │ 0.2393       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 69/250    │ 0.1922       │ 0.2707       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 151.24s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F0_Linear | Seed 1234 => DEC Best Sil: 0.0825 (Corr ARI: 0.2551) | DEC Best ARI: 0.3172 (Corr Sil: 0.0064) | Last Ep ARI: 0.3141 | Time: 151.2s
+[F0_Linear | Seed 2024] Pre-train Epoch   1/250 | Loss: 477.3826 | ARI: 0.1808 | NMI: 0.2835 | Sil: 0.1017
+[F0_Linear | Seed 2024] Pre-train Epoch  50/250 | Loss: 186.1331 | ARI: 0.2547 | NMI: 0.3904 | Sil: 0.2276
+[F0_Linear | Seed 2024] Pre-train Epoch 100/250 | Loss: 136.4101 | ARI: 0.2286 | NMI: 0.3701 | Sil: 0.1447
+[F0_Linear | Seed 2024] Pre-train Epoch 150/250 | Loss: 120.2768 | ARI: 0.2274 | NMI: 0.3703 | Sil: 0.1176
+[F0_Linear | Seed 2024] Pre-train Epoch 200/250 | Loss: 112.7136 | ARI: 0.2196 | NMI: 0.3634 | Sil: 0.1126
+[F0_Linear | Seed 2024] Pre-train Epoch 250/250 | Loss: 108.6437 | ARI: 0.2606 | NMI: 0.3970 | Sil: 0.1118
+[F0_Linear | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2809 @ Ep 34)...
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 111.7221 | KL: 0.3255 | ARI: 0.2483 | NMI: 0.3769 | Sil: 0.0937
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 108.4394 | KL: 0.3171 | ARI: 0.2549 | NMI: 0.3808 | Sil: 0.0880
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 105.6687 | KL: 0.3051 | ARI: 0.2630 | NMI: 0.3812 | Sil: 0.0787
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 103.2162 | KL: 0.2949 | ARI: 0.2816 | NMI: 0.3908 | Sil: 0.0635
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 101.2694 | KL: 0.2898 | ARI: 0.2912 | NMI: 0.3896 | Sil: 0.0547
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F0_Linear | Seed: 2024 | Dataset: 10x_human_lymph_node_A1            │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 8/200     │ 0.0947       │ 0.2487       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 199/200   │ 0.0550       │ 0.2922       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0547       │ 0.2912       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 34/250    │ 0.2809       │ 0.2548       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 97/250    │ 0.1488       │ 0.2714       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 150.65s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F0_Linear | Seed 2024 => DEC Best Sil: 0.0947 (Corr ARI: 0.2487) | DEC Best ARI: 0.2922 (Corr Sil: 0.0550) | Last Ep ARI: 0.2912 | Time: 150.7s
+
+----------------------------------------------------------------------
+---------- VARIANT: F1_LocalGlobal on 10x_human_lymph_node_A1 ----------
+----------------------------------------------------------------------
+[F1_LocalGlobal | Seed 42] Pre-train Epoch   1/250 | Loss: 478.4389 | ARI: 0.2066 | NMI: 0.3113 | Sil: 0.1059
+[F1_LocalGlobal | Seed 42] Pre-train Epoch  50/250 | Loss: 190.7190 | ARI: 0.2372 | NMI: 0.3730 | Sil: 0.2311
+[F1_LocalGlobal | Seed 42] Pre-train Epoch 100/250 | Loss: 149.5583 | ARI: 0.2561 | NMI: 0.3936 | Sil: 0.2034
+[F1_LocalGlobal | Seed 42] Pre-train Epoch 150/250 | Loss: 142.0536 | ARI: 0.2151 | NMI: 0.3653 | Sil: 0.1842
+[F1_LocalGlobal | Seed 42] Pre-train Epoch 200/250 | Loss: 137.2292 | ARI: 0.2237 | NMI: 0.3772 | Sil: 0.1716
+[F1_LocalGlobal | Seed 42] Pre-train Epoch 250/250 | Loss: 133.3321 | ARI: 0.2243 | NMI: 0.3792 | Sil: 0.1609
+[F1_LocalGlobal | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3676 @ Ep 19)...
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 138.4507 | KL: 0.2869 | ARI: 0.2492 | NMI: 0.3540 | Sil: 0.1731
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 134.5679 | KL: 0.2934 | ARI: 0.2538 | NMI: 0.3544 | Sil: 0.1356
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 131.1440 | KL: 0.2942 | ARI: 0.2410 | NMI: 0.3519 | Sil: 0.1107
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 128.0642 | KL: 0.3007 | ARI: 0.2264 | NMI: 0.3516 | Sil: 0.0986
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 125.6318 | KL: 0.3030 | ARI: 0.2174 | NMI: 0.3560 | Sil: 0.0859
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F1_LocalGlobal | Seed: 42 | Dataset: 10x_human_lymph_node_A1         │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.1731       │ 0.2492       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 22/200    │ 0.1554       │ 0.2589       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0859       │ 0.2174       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 19/250    │ 0.3676       │ 0.1817       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 121/250   │ 0.2277       │ 0.2593       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 156.25s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F1_LocalGlobal | Seed 42 => DEC Best Sil: 0.1731 (Corr ARI: 0.2492) | DEC Best ARI: 0.2589 (Corr Sil: 0.1554) | Last Ep ARI: 0.2174 | Time: 156.2s
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch   1/250 | Loss: 478.3079 | ARI: 0.1987 | NMI: 0.3036 | Sil: 0.1074
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch  50/250 | Loss: 189.9435 | ARI: 0.2421 | NMI: 0.3834 | Sil: 0.2518
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch 100/250 | Loss: 149.0668 | ARI: 0.2247 | NMI: 0.3722 | Sil: 0.2033
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch 150/250 | Loss: 141.8126 | ARI: 0.2246 | NMI: 0.3770 | Sil: 0.1845
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch 200/250 | Loss: 137.0874 | ARI: 0.2254 | NMI: 0.3829 | Sil: 0.1724
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch 250/250 | Loss: 133.2623 | ARI: 0.2526 | NMI: 0.3953 | Sil: 0.1704
+[F1_LocalGlobal | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3380 @ Ep 18)...
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 137.7175 | KL: 0.2814 | ARI: 0.2472 | NMI: 0.3468 | Sil: 0.1363
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 134.0686 | KL: 0.2782 | ARI: 0.2417 | NMI: 0.3515 | Sil: 0.1021
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 130.7312 | KL: 0.2700 | ARI: 0.2307 | NMI: 0.3526 | Sil: 0.0773
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 127.7852 | KL: 0.2700 | ARI: 0.2217 | NMI: 0.3526 | Sil: 0.0607
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 125.2238 | KL: 0.2727 | ARI: 0.2178 | NMI: 0.3531 | Sil: 0.0518
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F1_LocalGlobal | Seed: 1234 | Dataset: 10x_human_lymph_node_A1       │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 2/200     │ 0.1371       │ 0.2477       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 21/200    │ 0.1250       │ 0.2503       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0518       │ 0.2178       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 18/250    │ 0.3380       │ 0.1729       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 157/250   │ 0.1745       │ 0.2586       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 157.02s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F1_LocalGlobal | Seed 1234 => DEC Best Sil: 0.1371 (Corr ARI: 0.2477) | DEC Best ARI: 0.2503 (Corr Sil: 0.1250) | Last Ep ARI: 0.2178 | Time: 157.0s
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch   1/250 | Loss: 478.6525 | ARI: 0.1663 | NMI: 0.2734 | Sil: 0.1034
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch  50/250 | Loss: 191.8259 | ARI: 0.2311 | NMI: 0.3734 | Sil: 0.2350
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch 100/250 | Loss: 150.0450 | ARI: 0.2192 | NMI: 0.3715 | Sil: 0.1977
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch 150/250 | Loss: 142.1848 | ARI: 0.2213 | NMI: 0.3772 | Sil: 0.1789
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch 200/250 | Loss: 137.3918 | ARI: 0.2179 | NMI: 0.3765 | Sil: 0.1725
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch 250/250 | Loss: 133.5442 | ARI: 0.2145 | NMI: 0.3761 | Sil: 0.1658
+[F1_LocalGlobal | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3374 @ Ep 17)...
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 138.5080 | KL: 0.2607 | ARI: 0.2825 | NMI: 0.3702 | Sil: 0.1721
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 134.6494 | KL: 0.2645 | ARI: 0.2874 | NMI: 0.3747 | Sil: 0.1468
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 131.1795 | KL: 0.2664 | ARI: 0.2788 | NMI: 0.3697 | Sil: 0.1235
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 128.1787 | KL: 0.2722 | ARI: 0.2567 | NMI: 0.3665 | Sil: 0.0945
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 125.7040 | KL: 0.2762 | ARI: 0.2371 | NMI: 0.3637 | Sil: 0.0815
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F1_LocalGlobal | Seed: 2024 | Dataset: 10x_human_lymph_node_A1       │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.1721       │ 0.2825       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 39/200    │ 0.1531       │ 0.2903       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0815       │ 0.2371       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 17/250    │ 0.3374       │ 0.1501       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 27/250    │ 0.2732       │ 0.2510       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 155.81s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F1_LocalGlobal | Seed 2024 => DEC Best Sil: 0.1721 (Corr ARI: 0.2825) | DEC Best ARI: 0.2903 (Corr Sil: 0.1531) | Last Ep ARI: 0.2371 | Time: 155.8s
+
+----------------------------------------------------------------------
+---------- VARIANT: F2_VarianceWeight on 10x_human_lymph_node_A1 ----------
+----------------------------------------------------------------------
+[F2_VarianceWeight | Seed 42] Pre-train Epoch   1/250 | Loss: 476.1360 | ARI: 0.2105 | NMI: 0.3174 | Sil: 0.0989
+[F2_VarianceWeight | Seed 42] Pre-train Epoch  50/250 | Loss: 187.6036 | ARI: 0.2597 | NMI: 0.4023 | Sil: 0.2643
+[F2_VarianceWeight | Seed 42] Pre-train Epoch 100/250 | Loss: 141.4576 | ARI: 0.2628 | NMI: 0.3951 | Sil: 0.1783
+[F2_VarianceWeight | Seed 42] Pre-train Epoch 150/250 | Loss: 125.2758 | ARI: 0.2591 | NMI: 0.3962 | Sil: 0.1363
+[F2_VarianceWeight | Seed 42] Pre-train Epoch 200/250 | Loss: 115.8206 | ARI: 0.2637 | NMI: 0.3981 | Sil: 0.1197
+[F2_VarianceWeight | Seed 42] Pre-train Epoch 250/250 | Loss: 111.1682 | ARI: 0.2616 | NMI: 0.4000 | Sil: 0.1175
+[F2_VarianceWeight | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3349 @ Ep 17)...
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 112.8221 | KL: 0.2573 | ARI: 0.2465 | NMI: 0.3713 | Sil: 0.0806
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 109.2621 | KL: 0.2432 | ARI: 0.2663 | NMI: 0.3833 | Sil: 0.0611
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 106.7174 | KL: 0.2277 | ARI: 0.2921 | NMI: 0.3892 | Sil: 0.0627
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 103.8183 | KL: 0.2190 | ARI: 0.3105 | NMI: 0.4026 | Sil: 0.1098
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 101.7074 | KL: 0.2075 | ARI: 0.3048 | NMI: 0.4029 | Sil: 0.0869
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F2_VarianceWeight | Seed: 42 | Dataset: 10x_human_lymph_node_A1      │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 152/200   │ 0.1103       │ 0.3098       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 145/200   │ 0.0963       │ 0.3112       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0869       │ 0.3048       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 17/250    │ 0.3349       │ 0.2508       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 145/250   │ 0.1861       │ 0.3361       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 149.33s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F2_VarianceWeight | Seed 42 => DEC Best Sil: 0.1103 (Corr ARI: 0.3098) | DEC Best ARI: 0.3112 (Corr Sil: 0.0963) | Last Ep ARI: 0.3048 | Time: 149.3s
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch   1/250 | Loss: 482.1199 | ARI: 0.1828 | NMI: 0.2697 | Sil: 0.1196
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch  50/250 | Loss: 190.8313 | ARI: 0.2440 | NMI: 0.3737 | Sil: 0.2284
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch 100/250 | Loss: 142.1803 | ARI: 0.2653 | NMI: 0.4039 | Sil: 0.1781
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch 150/250 | Loss: 126.0907 | ARI: 0.2594 | NMI: 0.3946 | Sil: 0.1316
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch 200/250 | Loss: 116.1019 | ARI: 0.2332 | NMI: 0.3804 | Sil: 0.1127
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch 250/250 | Loss: 111.2443 | ARI: 0.2636 | NMI: 0.3960 | Sil: 0.1176
+[F2_VarianceWeight | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3023 @ Ep 31)...
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 113.7930 | KL: 0.2820 | ARI: 0.2435 | NMI: 0.3679 | Sil: 0.0888
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 110.2146 | KL: 0.2685 | ARI: 0.2812 | NMI: 0.3816 | Sil: 0.0669
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 107.2641 | KL: 0.2583 | ARI: 0.3147 | NMI: 0.3905 | Sil: 0.0662
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 104.7569 | KL: 0.2420 | ARI: 0.3083 | NMI: 0.3947 | Sil: 0.0919
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 102.5199 | KL: 0.2354 | ARI: 0.2854 | NMI: 0.3873 | Sil: 0.0797
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F2_VarianceWeight | Seed: 1234 | Dataset: 10x_human_lymph_node_A1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 122/200   │ 0.1020       │ 0.3168       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 119/200   │ 0.0988       │ 0.3214       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0797       │ 0.2854       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 31/250    │ 0.3023       │ 0.2426       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 117/250   │ 0.1589       │ 0.2677       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 151.29s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F2_VarianceWeight | Seed 1234 => DEC Best Sil: 0.1020 (Corr ARI: 0.3168) | DEC Best ARI: 0.3214 (Corr Sil: 0.0988) | Last Ep ARI: 0.2854 | Time: 151.3s
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch   1/250 | Loss: 479.6726 | ARI: 0.2182 | NMI: 0.3107 | Sil: 0.1114
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch  50/250 | Loss: 190.7877 | ARI: 0.2511 | NMI: 0.3769 | Sil: 0.2361
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch 100/250 | Loss: 142.2107 | ARI: 0.2680 | NMI: 0.3969 | Sil: 0.1820
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch 150/250 | Loss: 125.1095 | ARI: 0.2656 | NMI: 0.3958 | Sil: 0.1382
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch 200/250 | Loss: 115.4387 | ARI: 0.2662 | NMI: 0.4033 | Sil: 0.1271
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch 250/250 | Loss: 110.8370 | ARI: 0.2637 | NMI: 0.3999 | Sil: 0.1236
+[F2_VarianceWeight | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3243 @ Ep 29)...
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 113.2365 | KL: 0.2889 | ARI: 0.2452 | NMI: 0.3674 | Sil: 0.0877
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 109.7057 | KL: 0.2690 | ARI: 0.2765 | NMI: 0.3751 | Sil: 0.0566
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 106.7464 | KL: 0.2623 | ARI: 0.3134 | NMI: 0.3997 | Sil: 0.0536
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 104.4343 | KL: 0.2506 | ARI: 0.3152 | NMI: 0.4032 | Sil: 0.0631
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 102.1502 | KL: 0.2459 | ARI: 0.3004 | NMI: 0.3925 | Sil: 0.0943
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F2_VarianceWeight | Seed: 2024 | Dataset: 10x_human_lymph_node_A1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 170/200   │ 0.1027       │ 0.3057       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 128/200   │ 0.0348       │ 0.3180       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0943       │ 0.3004       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 29/250    │ 0.3243       │ 0.2396       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 9/250     │ 0.1579       │ 0.2797       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 151.98s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F2_VarianceWeight | Seed 2024 => DEC Best Sil: 0.1027 (Corr ARI: 0.3057) | DEC Best ARI: 0.3180 (Corr Sil: 0.0348) | Last Ep ARI: 0.3004 | Time: 152.0s
+
+----------------------------------------------------------------------
+---------- VARIANT: F3_SpatialCrossAttention on 10x_human_lymph_node_A1 ----------
+----------------------------------------------------------------------
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch   1/250 | Loss: 475.9530 | ARI: 0.2188 | NMI: 0.3324 | Sil: 0.1223
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch  50/250 | Loss: 184.4543 | ARI: 0.2596 | NMI: 0.3952 | Sil: 0.2472
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch 100/250 | Loss: 137.1365 | ARI: 0.2563 | NMI: 0.3917 | Sil: 0.1642
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch 150/250 | Loss: 119.9232 | ARI: 0.2667 | NMI: 0.4086 | Sil: 0.1300
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch 200/250 | Loss: 112.7006 | ARI: 0.2666 | NMI: 0.4074 | Sil: 0.1232
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch 250/250 | Loss: 108.6625 | ARI: 0.2647 | NMI: 0.4033 | Sil: 0.1165
+[F3_SpatialCrossAttention | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3080 @ Ep 32)...
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 112.6329 | KL: 0.3180 | ARI: 0.2551 | NMI: 0.3815 | Sil: 0.1203
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 109.3972 | KL: 0.3179 | ARI: 0.2568 | NMI: 0.3836 | Sil: 0.1124
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 106.3759 | KL: 0.3123 | ARI: 0.2619 | NMI: 0.3854 | Sil: 0.1028
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 104.0959 | KL: 0.3071 | ARI: 0.2678 | NMI: 0.3890 | Sil: 0.0971
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 101.8127 | KL: 0.2992 | ARI: 0.2763 | NMI: 0.3913 | Sil: 0.0898
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F3_SpatialCrossAttention | Seed: 42 | Dataset: 10x_human_lymph_node_A1 │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 5/200     │ 0.1210       │ 0.2556       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 198/200   │ 0.0901       │ 0.2766       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0898       │ 0.2763       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 32/250    │ 0.3080       │ 0.2530       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 146/250   │ 0.1311       │ 0.2697       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 158.30s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F3_SpatialCrossAttention | Seed 42 => DEC Best Sil: 0.1210 (Corr ARI: 0.2556) | DEC Best ARI: 0.2766 (Corr Sil: 0.0901) | Last Ep ARI: 0.2763 | Time: 158.3s
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch   1/250 | Loss: 478.6772 | ARI: 0.2187 | NMI: 0.3172 | Sil: 0.1253
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch  50/250 | Loss: 182.8920 | ARI: 0.2587 | NMI: 0.3965 | Sil: 0.2513
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch 100/250 | Loss: 137.2914 | ARI: 0.2687 | NMI: 0.4046 | Sil: 0.1714
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch 150/250 | Loss: 120.1226 | ARI: 0.2586 | NMI: 0.3967 | Sil: 0.1322
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch 200/250 | Loss: 112.6336 | ARI: 0.2694 | NMI: 0.4042 | Sil: 0.1236
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch 250/250 | Loss: 108.4541 | ARI: 0.2678 | NMI: 0.3995 | Sil: 0.1163
+[F3_SpatialCrossAttention | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3193 @ Ep 24)...
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 113.5293 | KL: 0.3176 | ARI: 0.2960 | NMI: 0.3929 | Sil: 0.1086
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 110.1444 | KL: 0.3127 | ARI: 0.3081 | NMI: 0.3937 | Sil: 0.0898
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 107.4179 | KL: 0.3118 | ARI: 0.3190 | NMI: 0.3951 | Sil: 0.0802
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 104.7674 | KL: 0.3003 | ARI: 0.3193 | NMI: 0.3956 | Sil: 0.0673
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 102.6544 | KL: 0.2960 | ARI: 0.3215 | NMI: 0.3946 | Sil: 0.0287
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F3_SpatialCrossAttention | Seed: 1234 | Dataset: 10x_human_lymph_node_A1 │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 4/200     │ 0.1095       │ 0.2967       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 191/200   │ 0.0505       │ 0.3256       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0287       │ 0.3215       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 24/250    │ 0.3193       │ 0.2510       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 214/250   │ 0.1681       │ 0.3328       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 157.46s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F3_SpatialCrossAttention | Seed 1234 => DEC Best Sil: 0.1095 (Corr ARI: 0.2967) | DEC Best ARI: 0.3256 (Corr Sil: 0.0505) | Last Ep ARI: 0.3215 | Time: 157.5s
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch   1/250 | Loss: 476.3559 | ARI: 0.2019 | NMI: 0.2802 | Sil: 0.1172
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch  50/250 | Loss: 186.0018 | ARI: 0.2556 | NMI: 0.3930 | Sil: 0.2372
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch 100/250 | Loss: 137.0089 | ARI: 0.2715 | NMI: 0.4057 | Sil: 0.1583
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch 150/250 | Loss: 120.6781 | ARI: 0.2689 | NMI: 0.4058 | Sil: 0.1299
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch 200/250 | Loss: 112.9359 | ARI: 0.2679 | NMI: 0.4066 | Sil: 0.1230
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch 250/250 | Loss: 108.7100 | ARI: 0.2635 | NMI: 0.3983 | Sil: 0.1210
+[F3_SpatialCrossAttention | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3277 @ Ep 21)...
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 115.6262 | KL: 0.3193 | ARI: 0.2763 | NMI: 0.3840 | Sil: 0.1218
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 112.0681 | KL: 0.3123 | ARI: 0.2840 | NMI: 0.3822 | Sil: 0.1048
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 109.1625 | KL: 0.3054 | ARI: 0.2974 | NMI: 0.3858 | Sil: 0.0914
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 106.7197 | KL: 0.2968 | ARI: 0.3064 | NMI: 0.3874 | Sil: 0.0792
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 104.5332 | KL: 0.2905 | ARI: 0.3118 | NMI: 0.3848 | Sil: 0.0678
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F3_SpatialCrossAttention | Seed: 2024 | Dataset: 10x_human_lymph_node_A1 │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.1218       │ 0.2763       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 183/200   │ 0.0703       │ 0.3158       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0678       │ 0.3118       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 21/250    │ 0.3277       │ 0.2376       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 111/250   │ 0.2041       │ 0.3337       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 158.28s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F3_SpatialCrossAttention | Seed 2024 => DEC Best Sil: 0.1218 (Corr ARI: 0.2763) | DEC Best ARI: 0.3158 (Corr Sil: 0.0703) | Last Ep ARI: 0.3118 | Time: 158.3s
+
+----------------------------------------------------------------------
+---------- VARIANT: F4_BilinearTensor on 10x_human_lymph_node_A1 ----------
+----------------------------------------------------------------------
+[F4_BilinearTensor | Seed 42] Pre-train Epoch   1/250 | Loss: 479.8542 | ARI: 0.1589 | NMI: 0.2873 | Sil: 0.1158
+[F4_BilinearTensor | Seed 42] Pre-train Epoch  50/250 | Loss: 180.4879 | ARI: 0.2159 | NMI: 0.3566 | Sil: 0.1305
+[F4_BilinearTensor | Seed 42] Pre-train Epoch 100/250 | Loss: 126.7787 | ARI: 0.1897 | NMI: 0.3535 | Sil: 0.0619
+[F4_BilinearTensor | Seed 42] Pre-train Epoch 150/250 | Loss: 116.0070 | ARI: 0.2211 | NMI: 0.3733 | Sil: 0.0605
+[F4_BilinearTensor | Seed 42] Pre-train Epoch 200/250 | Loss: 110.9749 | ARI: 0.2249 | NMI: 0.3747 | Sil: 0.0552
+[F4_BilinearTensor | Seed 42] Pre-train Epoch 250/250 | Loss: 107.6120 | ARI: 0.2249 | NMI: 0.3783 | Sil: 0.0538
+[F4_BilinearTensor | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1868 @ Ep 23)...
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 108.0291 | KL: 0.0846 | ARI: 0.2092 | NMI: 0.3405 | Sil: 0.0461
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 105.1431 | KL: 0.0712 | ARI: 0.2082 | NMI: 0.3371 | Sil: 0.0476
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 102.8111 | KL: 0.0602 | ARI: 0.2058 | NMI: 0.3315 | Sil: 0.0500
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 100.4778 | KL: 0.0513 | ARI: 0.2041 | NMI: 0.3300 | Sil: 0.0499
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 98.5878 | KL: 0.0445 | ARI: 0.2023 | NMI: 0.3273 | Sil: 0.0497
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F4_BilinearTensor | Seed: 42 | Dataset: 10x_human_lymph_node_A1      │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 125/200   │ 0.0504       │ 0.2041       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 14/200    │ 0.0461       │ 0.2115       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0497       │ 0.2023       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 23/250    │ 0.1868       │ 0.2530       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 168/250   │ 0.0555       │ 0.2575       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 154.72s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F4_BilinearTensor | Seed 42 => DEC Best Sil: 0.0504 (Corr ARI: 0.2041) | DEC Best ARI: 0.2115 (Corr Sil: 0.0461) | Last Ep ARI: 0.2023 | Time: 154.7s
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch   1/250 | Loss: 477.0649 | ARI: 0.1271 | NMI: 0.2359 | Sil: 0.1164
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch  50/250 | Loss: 180.3959 | ARI: 0.2196 | NMI: 0.3682 | Sil: 0.1242
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch 100/250 | Loss: 127.2977 | ARI: 0.2205 | NMI: 0.3701 | Sil: 0.0686
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch 150/250 | Loss: 116.1841 | ARI: 0.2083 | NMI: 0.3676 | Sil: 0.0594
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch 200/250 | Loss: 111.1278 | ARI: 0.2213 | NMI: 0.3745 | Sil: 0.0595
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch 250/250 | Loss: 107.5714 | ARI: 0.2170 | NMI: 0.3721 | Sil: 0.0586
+[F4_BilinearTensor | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2011 @ Ep 23)...
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 108.0329 | KL: 0.1060 | ARI: 0.2143 | NMI: 0.3402 | Sil: 0.0378
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 105.2146 | KL: 0.0902 | ARI: 0.2012 | NMI: 0.3375 | Sil: 0.0408
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 102.9703 | KL: 0.0751 | ARI: 0.1995 | NMI: 0.3402 | Sil: 0.0420
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 100.7801 | KL: 0.0661 | ARI: 0.2019 | NMI: 0.3435 | Sil: 0.0428
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 99.2480 | KL: 0.0575 | ARI: 0.2025 | NMI: 0.3408 | Sil: 0.0436
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F4_BilinearTensor | Seed: 1234 | Dataset: 10x_human_lymph_node_A1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 200/200   │ 0.0436       │ 0.2025       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 2/200     │ 0.0380       │ 0.2155       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0436       │ 0.2025       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 23/250    │ 0.2011       │ 0.2627       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 27/250    │ 0.1904       │ 0.2653       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 154.01s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F4_BilinearTensor | Seed 1234 => DEC Best Sil: 0.0436 (Corr ARI: 0.2025) | DEC Best ARI: 0.2155 (Corr Sil: 0.0380) | Last Ep ARI: 0.2025 | Time: 154.0s
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch   1/250 | Loss: 476.3008 | ARI: 0.1614 | NMI: 0.2805 | Sil: 0.1201
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch  50/250 | Loss: 176.9218 | ARI: 0.2094 | NMI: 0.3541 | Sil: 0.1219
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch 100/250 | Loss: 125.8484 | ARI: 0.1990 | NMI: 0.3540 | Sil: 0.0667
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch 150/250 | Loss: 115.6726 | ARI: 0.2263 | NMI: 0.3745 | Sil: 0.0580
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch 200/250 | Loss: 110.8945 | ARI: 0.2214 | NMI: 0.3736 | Sil: 0.0573
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch 250/250 | Loss: 107.4315 | ARI: 0.2222 | NMI: 0.3732 | Sil: 0.0562
+[F4_BilinearTensor | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2173 @ Ep 16)...
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 107.8614 | KL: 0.0716 | ARI: 0.2035 | NMI: 0.3183 | Sil: 0.0605
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 105.0046 | KL: 0.0604 | ARI: 0.1966 | NMI: 0.3120 | Sil: 0.0619
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 102.5910 | KL: 0.0502 | ARI: 0.1912 | NMI: 0.3038 | Sil: 0.0594
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 100.4826 | KL: 0.0442 | ARI: 0.1877 | NMI: 0.3023 | Sil: 0.0620
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 98.7711 | KL: 0.0384 | ARI: 0.1856 | NMI: 0.3017 | Sil: 0.0601
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F4_BilinearTensor | Seed: 2024 | Dataset: 10x_human_lymph_node_A1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 103/200   │ 0.0656       │ 0.1879       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 2/200     │ 0.0607       │ 0.2058       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0601       │ 0.1856       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 16/250    │ 0.2173       │ 0.2330       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 19/250    │ 0.2019       │ 0.2651       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 154.68s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F4_BilinearTensor | Seed 2024 => DEC Best Sil: 0.0656 (Corr ARI: 0.1879) | DEC Best ARI: 0.2058 (Corr Sil: 0.0607) | Last Ep ARI: 0.1856 | Time: 154.7s
+
+----------------------------------------------------------------------
+---------- VARIANT: F5_GatedMultiModal on 10x_human_lymph_node_A1 ----------
+----------------------------------------------------------------------
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch   1/250 | Loss: 480.0449 | ARI: 0.1553 | NMI: 0.2756 | Sil: 0.1064
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch  50/250 | Loss: 182.9605 | ARI: 0.2050 | NMI: 0.3571 | Sil: 0.1433
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch 100/250 | Loss: 130.7993 | ARI: 0.1933 | NMI: 0.3519 | Sil: 0.0768
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch 150/250 | Loss: 118.8217 | ARI: 0.1955 | NMI: 0.3583 | Sil: 0.0679
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch 200/250 | Loss: 112.9928 | ARI: 0.2041 | NMI: 0.3670 | Sil: 0.0637
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch 250/250 | Loss: 109.0527 | ARI: 0.2099 | NMI: 0.3747 | Sil: 0.0654
+[F5_GatedMultiModal | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1819 @ Ep 30)...
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 109.4698 | KL: 0.1091 | ARI: 0.1897 | NMI: 0.3392 | Sil: 0.0542
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 106.4928 | KL: 0.0928 | ARI: 0.1880 | NMI: 0.3413 | Sil: 0.0549
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 103.6179 | KL: 0.0781 | ARI: 0.1849 | NMI: 0.3397 | Sil: 0.0530
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 101.3125 | KL: 0.0670 | ARI: 0.1858 | NMI: 0.3427 | Sil: 0.0511
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 99.4361 | KL: 0.0582 | ARI: 0.1873 | NMI: 0.3497 | Sil: 0.0490
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F5_GatedMultiModal | Seed: 42 | Dataset: 10x_human_lymph_node_A1     │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 26/200    │ 0.0554       │ 0.1889       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 5/200     │ 0.0538       │ 0.1902       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0490       │ 0.1873       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 30/250    │ 0.1819       │ 0.2351       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 26/250    │ 0.1804       │ 0.2396       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 157.68s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F5_GatedMultiModal | Seed 42 => DEC Best Sil: 0.0554 (Corr ARI: 0.1889) | DEC Best ARI: 0.1902 (Corr Sil: 0.0538) | Last Ep ARI: 0.1873 | Time: 157.7s
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch   1/250 | Loss: 479.4346 | ARI: 0.1509 | NMI: 0.2820 | Sil: 0.1059
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch  50/250 | Loss: 182.0980 | ARI: 0.2103 | NMI: 0.3554 | Sil: 0.1387
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch 100/250 | Loss: 129.4827 | ARI: 0.2091 | NMI: 0.3585 | Sil: 0.0810
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch 150/250 | Loss: 118.4896 | ARI: 0.2088 | NMI: 0.3722 | Sil: 0.0719
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch 200/250 | Loss: 113.1889 | ARI: 0.2134 | NMI: 0.3832 | Sil: 0.0673
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch 250/250 | Loss: 109.3099 | ARI: 0.2094 | NMI: 0.3754 | Sil: 0.0688
+[F5_GatedMultiModal | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1847 @ Ep 30)...
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 109.7546 | KL: 0.1380 | ARI: 0.2066 | NMI: 0.3311 | Sil: 0.0529
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 106.6690 | KL: 0.1150 | ARI: 0.2029 | NMI: 0.3311 | Sil: 0.0528
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 104.6020 | KL: 0.0983 | ARI: 0.1979 | NMI: 0.3285 | Sil: 0.0528
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 101.7205 | KL: 0.0824 | ARI: 0.1946 | NMI: 0.3243 | Sil: 0.0504
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 99.8763 | KL: 0.0703 | ARI: 0.1943 | NMI: 0.3226 | Sil: 0.0501
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F5_GatedMultiModal | Seed: 1234 | Dataset: 10x_human_lymph_node_A1   │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 22/200    │ 0.0537       │ 0.2053       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 3/200     │ 0.0532       │ 0.2076       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0501       │ 0.1943       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 30/250    │ 0.1847       │ 0.2493       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 28/250    │ 0.1799       │ 0.2563       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 156.72s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F5_GatedMultiModal | Seed 1234 => DEC Best Sil: 0.0537 (Corr ARI: 0.2053) | DEC Best ARI: 0.2076 (Corr Sil: 0.0532) | Last Ep ARI: 0.1943 | Time: 156.7s
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch   1/250 | Loss: 479.3236 | ARI: 0.1354 | NMI: 0.2366 | Sil: 0.1059
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch  50/250 | Loss: 182.8123 | ARI: 0.2079 | NMI: 0.3586 | Sil: 0.1379
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch 100/250 | Loss: 129.3393 | ARI: 0.2156 | NMI: 0.3636 | Sil: 0.0806
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch 150/250 | Loss: 118.3252 | ARI: 0.2316 | NMI: 0.3836 | Sil: 0.0708
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch 200/250 | Loss: 112.9236 | ARI: 0.2226 | NMI: 0.3804 | Sil: 0.0675
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch 250/250 | Loss: 109.0670 | ARI: 0.2308 | NMI: 0.3852 | Sil: 0.0650
+[F5_GatedMultiModal | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1732 @ Ep 24)...
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 109.5226 | KL: 0.1064 | ARI: 0.2080 | NMI: 0.3435 | Sil: 0.0684
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 106.3668 | KL: 0.0891 | ARI: 0.2075 | NMI: 0.3383 | Sil: 0.0663
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 103.6915 | KL: 0.0746 | ARI: 0.2043 | NMI: 0.3325 | Sil: 0.0634
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 101.3352 | KL: 0.0643 | ARI: 0.2077 | NMI: 0.3337 | Sil: 0.0627
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 99.2998 | KL: 0.0542 | ARI: 0.2061 | NMI: 0.3276 | Sil: 0.0612
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F5_GatedMultiModal | Seed: 2024 | Dataset: 10x_human_lymph_node_A1   │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 15/200    │ 0.0689       │ 0.2099       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 199/200   │ 0.0611       │ 0.2127       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0612       │ 0.2061       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 24/250    │ 0.1732       │ 0.2411       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 193/250   │ 0.0666       │ 0.2482       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 159.92s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F5_GatedMultiModal | Seed 2024 => DEC Best Sil: 0.0689 (Corr ARI: 0.2099) | DEC Best ARI: 0.2127 (Corr Sil: 0.0611) | Last Ep ARI: 0.2061 | Time: 159.9s
+
+----------------------------------------------------------------------
+---------- VARIANT: F6_QKVCrossFusion on 10x_human_lymph_node_A1 ----------
+----------------------------------------------------------------------
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch   1/250 | Loss: 477.9868 | ARI: 0.1546 | NMI: 0.2748 | Sil: 0.1250
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch  50/250 | Loss: 180.6074 | ARI: 0.2182 | NMI: 0.3641 | Sil: 0.1332
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch 100/250 | Loss: 129.0819 | ARI: 0.2236 | NMI: 0.3753 | Sil: 0.0698
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch 150/250 | Loss: 117.0490 | ARI: 0.2183 | NMI: 0.3688 | Sil: 0.0649
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch 200/250 | Loss: 111.8545 | ARI: 0.2216 | NMI: 0.3747 | Sil: 0.0633
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch 250/250 | Loss: 108.2031 | ARI: 0.2195 | NMI: 0.3644 | Sil: 0.0656
+[F6_QKVCrossFusion | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2230 @ Ep 23)...
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 108.7000 | KL: 0.0856 | ARI: 0.1877 | NMI: 0.3191 | Sil: 0.0416
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 105.7152 | KL: 0.0730 | ARI: 0.1795 | NMI: 0.3110 | Sil: 0.0424
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 103.3207 | KL: 0.0620 | ARI: 0.1819 | NMI: 0.3077 | Sil: 0.0418
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 101.1581 | KL: 0.0542 | ARI: 0.1753 | NMI: 0.3047 | Sil: 0.0438
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 99.0447 | KL: 0.0483 | ARI: 0.1702 | NMI: 0.3009 | Sil: 0.0453
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F6_QKVCrossFusion | Seed: 42 | Dataset: 10x_human_lymph_node_A1      │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 185/200   │ 0.0475       │ 0.1738       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 12/200    │ 0.0400       │ 0.1906       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0453       │ 0.1702       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 23/250    │ 0.2230       │ 0.2566       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 24/250    │ 0.2192       │ 0.2588       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 155.99s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F6_QKVCrossFusion | Seed 42 => DEC Best Sil: 0.0475 (Corr ARI: 0.1738) | DEC Best ARI: 0.1906 (Corr Sil: 0.0400) | Last Ep ARI: 0.1702 | Time: 156.0s
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch   1/250 | Loss: 478.9142 | ARI: 0.1244 | NMI: 0.2246 | Sil: 0.1195
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch  50/250 | Loss: 182.3377 | ARI: 0.2014 | NMI: 0.3575 | Sil: 0.1258
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch 100/250 | Loss: 129.8167 | ARI: 0.2275 | NMI: 0.3729 | Sil: 0.0727
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch 150/250 | Loss: 117.2824 | ARI: 0.2203 | NMI: 0.3770 | Sil: 0.0646
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch 200/250 | Loss: 111.8463 | ARI: 0.1999 | NMI: 0.3568 | Sil: 0.0560
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch 250/250 | Loss: 108.1302 | ARI: 0.2216 | NMI: 0.3813 | Sil: 0.0599
+[F6_QKVCrossFusion | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2153 @ Ep 21)...
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 108.6227 | KL: 0.0752 | ARI: 0.2053 | NMI: 0.3238 | Sil: 0.0414
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 105.6231 | KL: 0.0641 | ARI: 0.2002 | NMI: 0.3259 | Sil: 0.0405
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 103.3792 | KL: 0.0559 | ARI: 0.1973 | NMI: 0.3205 | Sil: 0.0410
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 100.8808 | KL: 0.0480 | ARI: 0.1983 | NMI: 0.3167 | Sil: 0.0383
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 98.8104 | KL: 0.0422 | ARI: 0.1957 | NMI: 0.3152 | Sil: 0.0380
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F6_QKVCrossFusion | Seed: 1234 | Dataset: 10x_human_lymph_node_A1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 11/200    │ 0.0426       │ 0.2027       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 7/200     │ 0.0416       │ 0.2093       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0380       │ 0.1957       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 21/250    │ 0.2153       │ 0.2661       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 22/250    │ 0.2117       │ 0.2687       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 156.77s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F6_QKVCrossFusion | Seed 1234 => DEC Best Sil: 0.0426 (Corr ARI: 0.2027) | DEC Best ARI: 0.2093 (Corr Sil: 0.0416) | Last Ep ARI: 0.1957 | Time: 156.8s
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch   1/250 | Loss: 478.9886 | ARI: 0.1402 | NMI: 0.2583 | Sil: 0.1186
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch  50/250 | Loss: 177.6417 | ARI: 0.2084 | NMI: 0.3578 | Sil: 0.1247
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch 100/250 | Loss: 128.5167 | ARI: 0.2157 | NMI: 0.3613 | Sil: 0.0724
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch 150/250 | Loss: 116.9646 | ARI: 0.2228 | NMI: 0.3727 | Sil: 0.0653
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch 200/250 | Loss: 111.7065 | ARI: 0.2062 | NMI: 0.3672 | Sil: 0.0558
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch 250/250 | Loss: 108.1430 | ARI: 0.2262 | NMI: 0.3801 | Sil: 0.0611
+[F6_QKVCrossFusion | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2078 @ Ep 24)...
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 108.6301 | KL: 0.0913 | ARI: 0.1662 | NMI: 0.3087 | Sil: 0.0416
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 105.7234 | KL: 0.0774 | ARI: 0.1726 | NMI: 0.3122 | Sil: 0.0418
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 103.2042 | KL: 0.0657 | ARI: 0.1748 | NMI: 0.3138 | Sil: 0.0418
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 101.0098 | KL: 0.0572 | ARI: 0.1785 | NMI: 0.3182 | Sil: 0.0412
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 99.1339 | KL: 0.0500 | ARI: 0.1776 | NMI: 0.3194 | Sil: 0.0406
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F6_QKVCrossFusion | Seed: 2024 | Dataset: 10x_human_lymph_node_A1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 72/200    │ 0.0429       │ 0.1763       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 160/200   │ 0.0412       │ 0.1798       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0406       │ 0.1776       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 24/250    │ 0.2078       │ 0.2578       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 19/250    │ 0.2037       │ 0.2632       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 156.34s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_A1 | F6_QKVCrossFusion | Seed 2024 => DEC Best Sil: 0.0429 (Corr ARI: 0.1763) | DEC Best ARI: 0.1798 (Corr Sil: 0.0412) | Last Ep ARI: 0.1776 | Time: 156.3s
+
+========================================================================================
+================== DATASET: 10x_human_lymph_node_D1 (Index 1) ==================
+========================================================================================
+Downloading dataset files for 10x_human_lymph_node_D1...
+Retrieving folder contents
+Processing file 1jOIAO9prRXx7Lj5wpb1RQ_2ZyTAkNLSf adata_ADT.h5ad
+Processing file 1jD-ZOTBtBVFAhItzRXUl6wS-QMXzyNqp adata_RNA.h5ad
+Processing file 17PFU7LHpZUWLdFjUzcN6fagdDrlamYZQ annotation.csv
+Retrieving folder contents completed
+Building directory structure
+Building directory structure completed
+Downloading...
+From: https://drive.google.com/uc?id=1jOIAO9prRXx7Lj5wpb1RQ_2ZyTAkNLSf
+To: /kaggle/working/Arise-V6/data/10x_human_lymph_node_D1/adata_ADT.h5ad
+100%|██████████████████████████████████████| 1.10M/1.10M [00:00<00:00, 61.7MB/s]
+Downloading...
+From: https://drive.google.com/uc?id=1jD-ZOTBtBVFAhItzRXUl6wS-QMXzyNqp
+To: /kaggle/working/Arise-V6/data/10x_human_lymph_node_D1/adata_RNA.h5ad
+100%|██████████████████████████████████████| 31.6M/31.6M [00:00<00:00, 85.8MB/s]
+Downloading...
+From: https://drive.google.com/uc?id=17PFU7LHpZUWLdFjUzcN6fagdDrlamYZQ
+To: /kaggle/working/Arise-V6/data/10x_human_lymph_node_D1/annotation.csv
+100%|████████████████████████████████████████| 117k/117k [00:00<00:00, 88.0MB/s]
+Download completed
+Loaded 10x_human_lymph_node_D1: 3359 spots, 11 ground-truth clusters.
+
+----------------------------------------------------------------------
+---------- VARIANT: F0_Linear on 10x_human_lymph_node_D1 ----------
+----------------------------------------------------------------------
+[F0_Linear | Seed 42] Pre-train Epoch   1/250 | Loss: 364.2368 | ARI: 0.2124 | NMI: 0.3180 | Sil: 0.1003
+[F0_Linear | Seed 42] Pre-train Epoch  50/250 | Loss: 161.4103 | ARI: 0.2287 | NMI: 0.3586 | Sil: 0.1571
+[F0_Linear | Seed 42] Pre-train Epoch 100/250 | Loss: 122.7779 | ARI: 0.2143 | NMI: 0.3533 | Sil: 0.0974
+[F0_Linear | Seed 42] Pre-train Epoch 150/250 | Loss: 111.4731 | ARI: 0.2137 | NMI: 0.3524 | Sil: 0.0871
+[F0_Linear | Seed 42] Pre-train Epoch 200/250 | Loss: 106.9018 | ARI: 0.2012 | NMI: 0.3430 | Sil: 0.0793
+[F0_Linear | Seed 42] Pre-train Epoch 250/250 | Loss: 103.7390 | ARI: 0.2202 | NMI: 0.3580 | Sil: 0.0863
+[F0_Linear | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2526 @ Ep 20)...
+[F0_Linear | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 108.5947 | KL: 0.1985 | ARI: 0.2712 | NMI: 0.3482 | Sil: 0.0717
+[F0_Linear | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 105.3587 | KL: 0.1955 | ARI: 0.2889 | NMI: 0.3521 | Sil: 0.0491
+[F0_Linear | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 102.8008 | KL: 0.1920 | ARI: 0.2895 | NMI: 0.3489 | Sil: 0.0292
+[F0_Linear | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 100.5389 | KL: 0.1900 | ARI: 0.2617 | NMI: 0.3460 | Sil: 0.0151
+[F0_Linear | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 98.6023 | KL: 0.1860 | ARI: 0.2452 | NMI: 0.3484 | Sil: 0.0126
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F0_Linear | Seed: 42 | Dataset: 10x_human_lymph_node_D1              │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.0717       │ 0.2712       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 93/200    │ 0.0307       │ 0.2966       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0126       │ 0.2452       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 20/250    │ 0.2526       │ 0.2673       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 24/250    │ 0.2389       │ 0.2837       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 155.44s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F0_Linear | Seed 42 => DEC Best Sil: 0.0717 (Corr ARI: 0.2712) | DEC Best ARI: 0.2966 (Corr Sil: 0.0307) | Last Ep ARI: 0.2452 | Time: 155.4s
+[F0_Linear | Seed 1234] Pre-train Epoch   1/250 | Loss: 365.3353 | ARI: 0.2878 | NMI: 0.3404 | Sil: 0.1002
+[F0_Linear | Seed 1234] Pre-train Epoch  50/250 | Loss: 162.5231 | ARI: 0.2352 | NMI: 0.3516 | Sil: 0.1524
+[F0_Linear | Seed 1234] Pre-train Epoch 100/250 | Loss: 122.5004 | ARI: 0.2211 | NMI: 0.3567 | Sil: 0.0933
+[F0_Linear | Seed 1234] Pre-train Epoch 150/250 | Loss: 111.2496 | ARI: 0.1777 | NMI: 0.3368 | Sil: 0.0742
+[F0_Linear | Seed 1234] Pre-train Epoch 200/250 | Loss: 106.7114 | ARI: 0.1853 | NMI: 0.3388 | Sil: 0.0740
+[F0_Linear | Seed 1234] Pre-train Epoch 250/250 | Loss: 103.4081 | ARI: 0.2083 | NMI: 0.3442 | Sil: 0.0841
+[F0_Linear | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2364 @ Ep 19)...
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 106.7476 | KL: 0.1987 | ARI: 0.2453 | NMI: 0.3248 | Sil: 0.0530
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 103.8256 | KL: 0.1936 | ARI: 0.2310 | NMI: 0.3221 | Sil: 0.0339
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 101.2800 | KL: 0.1881 | ARI: 0.2153 | NMI: 0.3267 | Sil: 0.0170
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 99.0622 | KL: 0.1826 | ARI: 0.2010 | NMI: 0.3309 | Sil: 0.0056
+[F0_Linear | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 97.3050 | KL: 0.1770 | ARI: 0.2040 | NMI: 0.3364 | Sil: -0.0049
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F0_Linear | Seed: 1234 | Dataset: 10x_human_lymph_node_D1            │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.0530       │ 0.2453       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 8/200     │ 0.0514       │ 0.2484       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ -0.0049      │ 0.2040       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 19/250    │ 0.2364       │ 0.2307       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 6/250     │ 0.1575       │ 0.2912       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 157.51s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F0_Linear | Seed 1234 => DEC Best Sil: 0.0530 (Corr ARI: 0.2453) | DEC Best ARI: 0.2484 (Corr Sil: 0.0514) | Last Ep ARI: 0.2040 | Time: 157.5s
+[F0_Linear | Seed 2024] Pre-train Epoch   1/250 | Loss: 366.2927 | ARI: 0.1505 | NMI: 0.2504 | Sil: 0.0971
+[F0_Linear | Seed 2024] Pre-train Epoch  50/250 | Loss: 164.4175 | ARI: 0.2598 | NMI: 0.3619 | Sil: 0.1512
+[F0_Linear | Seed 2024] Pre-train Epoch 100/250 | Loss: 123.0882 | ARI: 0.1973 | NMI: 0.3444 | Sil: 0.0887
+[F0_Linear | Seed 2024] Pre-train Epoch 150/250 | Loss: 111.2347 | ARI: 0.2057 | NMI: 0.3459 | Sil: 0.0880
+[F0_Linear | Seed 2024] Pre-train Epoch 200/250 | Loss: 106.6448 | ARI: 0.1878 | NMI: 0.3445 | Sil: 0.0772
+[F0_Linear | Seed 2024] Pre-train Epoch 250/250 | Loss: 103.4218 | ARI: 0.1948 | NMI: 0.3484 | Sil: 0.0768
+[F0_Linear | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2616 @ Ep 18)...
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 107.0753 | KL: 0.1936 | ARI: 0.3066 | NMI: 0.3931 | Sil: 0.0560
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 104.1613 | KL: 0.1905 | ARI: 0.2771 | NMI: 0.3709 | Sil: 0.0435
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 101.6832 | KL: 0.1876 | ARI: 0.2399 | NMI: 0.3509 | Sil: 0.0319
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 99.4989 | KL: 0.1859 | ARI: 0.2047 | NMI: 0.3348 | Sil: 0.0204
+[F0_Linear | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 97.7548 | KL: 0.1813 | ARI: 0.1922 | NMI: 0.3228 | Sil: 0.0167
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F0_Linear | Seed: 2024 | Dataset: 10x_human_lymph_node_D1            │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.0560       │ 0.3066       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 2/200     │ 0.0556       │ 0.3071       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0167       │ 0.1922       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 18/250    │ 0.2616       │ 0.2834       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 27/250    │ 0.2479       │ 0.2868       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 158.97s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F0_Linear | Seed 2024 => DEC Best Sil: 0.0560 (Corr ARI: 0.3066) | DEC Best ARI: 0.3071 (Corr Sil: 0.0556) | Last Ep ARI: 0.1922 | Time: 159.0s
+
+----------------------------------------------------------------------
+---------- VARIANT: F1_LocalGlobal on 10x_human_lymph_node_D1 ----------
+----------------------------------------------------------------------
+[F1_LocalGlobal | Seed 42] Pre-train Epoch   1/250 | Loss: 365.5952 | ARI: 0.2101 | NMI: 0.3109 | Sil: 0.1019
+[F1_LocalGlobal | Seed 42] Pre-train Epoch  50/250 | Loss: 169.6898 | ARI: 0.1801 | NMI: 0.3170 | Sil: 0.1882
+[F1_LocalGlobal | Seed 42] Pre-train Epoch 100/250 | Loss: 144.7926 | ARI: 0.2103 | NMI: 0.3355 | Sil: 0.1705
+[F1_LocalGlobal | Seed 42] Pre-train Epoch 150/250 | Loss: 139.0673 | ARI: 0.2260 | NMI: 0.3496 | Sil: 0.1518
+[F1_LocalGlobal | Seed 42] Pre-train Epoch 200/250 | Loss: 134.5071 | ARI: 0.2403 | NMI: 0.3509 | Sil: 0.1718
+[F1_LocalGlobal | Seed 42] Pre-train Epoch 250/250 | Loss: 130.5983 | ARI: 0.2247 | NMI: 0.3477 | Sil: 0.1359
+[F1_LocalGlobal | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3207 @ Ep 17)...
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 135.5496 | KL: 0.2114 | ARI: 0.2649 | NMI: 0.3422 | Sil: 0.1462
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 131.6614 | KL: 0.2200 | ARI: 0.2574 | NMI: 0.3432 | Sil: 0.1102
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 128.2606 | KL: 0.2275 | ARI: 0.2526 | NMI: 0.3358 | Sil: 0.0853
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 125.6158 | KL: 0.2367 | ARI: 0.2557 | NMI: 0.3468 | Sil: 0.0702
+[F1_LocalGlobal | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 122.7245 | KL: 0.2380 | ARI: 0.2528 | NMI: 0.3522 | Sil: 0.0564
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F1_LocalGlobal | Seed: 42 | Dataset: 10x_human_lymph_node_D1         │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.1462       │ 0.2649       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 4/200     │ 0.1447       │ 0.2653       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0564       │ 0.2528       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 17/250    │ 0.3207       │ 0.1365       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 3/250     │ 0.1137       │ 0.2556       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 159.45s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F1_LocalGlobal | Seed 42 => DEC Best Sil: 0.1462 (Corr ARI: 0.2649) | DEC Best ARI: 0.2653 (Corr Sil: 0.1447) | Last Ep ARI: 0.2528 | Time: 159.4s
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch   1/250 | Loss: 366.7714 | ARI: 0.2811 | NMI: 0.3341 | Sil: 0.1025
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch  50/250 | Loss: 171.8251 | ARI: 0.2130 | NMI: 0.3325 | Sil: 0.2014
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch 100/250 | Loss: 144.6196 | ARI: 0.2270 | NMI: 0.3497 | Sil: 0.1681
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch 150/250 | Loss: 138.9321 | ARI: 0.2188 | NMI: 0.3486 | Sil: 0.1434
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch 200/250 | Loss: 134.4094 | ARI: 0.2590 | NMI: 0.3581 | Sil: 0.1722
+[F1_LocalGlobal | Seed 1234] Pre-train Epoch 250/250 | Loss: 130.3343 | ARI: 0.2725 | NMI: 0.3718 | Sil: 0.1661
+[F1_LocalGlobal | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2772 @ Ep 21)...
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 133.2363 | KL: 0.2608 | ARI: 0.3347 | NMI: 0.3612 | Sil: 0.0929
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 129.7522 | KL: 0.2587 | ARI: 0.2708 | NMI: 0.3632 | Sil: 0.0638
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 126.1870 | KL: 0.2582 | ARI: 0.2195 | NMI: 0.3521 | Sil: 0.0438
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 123.4354 | KL: 0.2534 | ARI: 0.2269 | NMI: 0.3555 | Sil: 0.0355
+[F1_LocalGlobal | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 120.9358 | KL: 0.2467 | ARI: 0.2409 | NMI: 0.3637 | Sil: 0.0655
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F1_LocalGlobal | Seed: 1234 | Dataset: 10x_human_lymph_node_D1       │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.0929       │ 0.3347       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 1/200     │ 0.0929       │ 0.3347       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0655       │ 0.2409       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 21/250    │ 0.2772       │ 0.1685       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 168/250   │ 0.1820       │ 0.2868       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 156.78s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F1_LocalGlobal | Seed 1234 => DEC Best Sil: 0.0929 (Corr ARI: 0.3347) | DEC Best ARI: 0.3347 (Corr Sil: 0.0929) | Last Ep ARI: 0.2409 | Time: 156.8s
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch   1/250 | Loss: 367.6692 | ARI: 0.2205 | NMI: 0.2797 | Sil: 0.1265
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch  50/250 | Loss: 172.8804 | ARI: 0.2275 | NMI: 0.3492 | Sil: 0.1971
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch 100/250 | Loss: 144.6399 | ARI: 0.2353 | NMI: 0.3592 | Sil: 0.1663
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch 150/250 | Loss: 138.9633 | ARI: 0.2541 | NMI: 0.3530 | Sil: 0.1883
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch 200/250 | Loss: 134.5317 | ARI: 0.2757 | NMI: 0.3658 | Sil: 0.1814
+[F1_LocalGlobal | Seed 2024] Pre-train Epoch 250/250 | Loss: 130.5710 | ARI: 0.2279 | NMI: 0.3565 | Sil: 0.1339
+[F1_LocalGlobal | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.3320 @ Ep 22)...
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 134.1523 | KL: 0.3756 | ARI: 0.3163 | NMI: 0.3488 | Sil: 0.1260
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 130.2376 | KL: 0.3808 | ARI: 0.2877 | NMI: 0.3539 | Sil: 0.1189
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 127.1329 | KL: 0.3772 | ARI: 0.2392 | NMI: 0.3496 | Sil: 0.1080
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 124.1650 | KL: 0.3617 | ARI: 0.2019 | NMI: 0.3483 | Sil: 0.1003
+[F1_LocalGlobal | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 121.5119 | KL: 0.3444 | ARI: 0.1853 | NMI: 0.3487 | Sil: 0.0962
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F1_LocalGlobal | Seed: 2024 | Dataset: 10x_human_lymph_node_D1       │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 12/200    │ 0.1265       │ 0.3125       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 1/200     │ 0.1260       │ 0.3163       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0962       │ 0.1853       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 22/250    │ 0.3320       │ 0.1699       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 8/250     │ 0.1762       │ 0.3043       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 156.37s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F1_LocalGlobal | Seed 2024 => DEC Best Sil: 0.1265 (Corr ARI: 0.3125) | DEC Best ARI: 0.3163 (Corr Sil: 0.1260) | Last Ep ARI: 0.1853 | Time: 156.4s
+
+----------------------------------------------------------------------
+---------- VARIANT: F2_VarianceWeight on 10x_human_lymph_node_D1 ----------
+----------------------------------------------------------------------
+[F2_VarianceWeight | Seed 42] Pre-train Epoch   1/250 | Loss: 365.0728 | ARI: 0.2065 | NMI: 0.2848 | Sil: 0.1223
+[F2_VarianceWeight | Seed 42] Pre-train Epoch  50/250 | Loss: 167.8345 | ARI: 0.2271 | NMI: 0.3531 | Sil: 0.1902
+[F2_VarianceWeight | Seed 42] Pre-train Epoch 100/250 | Loss: 129.6632 | ARI: 0.2012 | NMI: 0.3500 | Sil: 0.1165
+[F2_VarianceWeight | Seed 42] Pre-train Epoch 150/250 | Loss: 114.9878 | ARI: 0.1979 | NMI: 0.3470 | Sil: 0.0916
+[F2_VarianceWeight | Seed 42] Pre-train Epoch 200/250 | Loss: 109.1419 | ARI: 0.1996 | NMI: 0.3479 | Sil: 0.0843
+[F2_VarianceWeight | Seed 42] Pre-train Epoch 250/250 | Loss: 105.5542 | ARI: 0.1913 | NMI: 0.3457 | Sil: 0.0844
+[F2_VarianceWeight | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2578 @ Ep 24)...
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 107.8185 | KL: 0.2148 | ARI: 0.2070 | NMI: 0.3276 | Sil: 0.0651
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 104.8134 | KL: 0.1973 | ARI: 0.2070 | NMI: 0.3292 | Sil: 0.0508
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 102.2580 | KL: 0.1825 | ARI: 0.2091 | NMI: 0.3277 | Sil: 0.0410
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 99.9565 | KL: 0.1723 | ARI: 0.2123 | NMI: 0.3296 | Sil: 0.0381
+[F2_VarianceWeight | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 98.0106 | KL: 0.1630 | ARI: 0.2130 | NMI: 0.3347 | Sil: 0.0434
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F2_VarianceWeight | Seed: 42 | Dataset: 10x_human_lymph_node_D1      │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 3/200     │ 0.0653       │ 0.2076       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 128/200   │ 0.0399       │ 0.2171       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0434       │ 0.2130       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 24/250    │ 0.2578       │ 0.2418       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 20/250    │ 0.2440       │ 0.2859       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 157.42s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F2_VarianceWeight | Seed 42 => DEC Best Sil: 0.0653 (Corr ARI: 0.2076) | DEC Best ARI: 0.2171 (Corr Sil: 0.0399) | Last Ep ARI: 0.2130 | Time: 157.4s
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch   1/250 | Loss: 364.5221 | ARI: 0.2189 | NMI: 0.3137 | Sil: 0.0847
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch  50/250 | Loss: 167.7822 | ARI: 0.2163 | NMI: 0.3444 | Sil: 0.1913
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch 100/250 | Loss: 129.7159 | ARI: 0.2176 | NMI: 0.3530 | Sil: 0.1027
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch 150/250 | Loss: 114.8871 | ARI: 0.1833 | NMI: 0.3375 | Sil: 0.0751
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch 200/250 | Loss: 109.1897 | ARI: 0.1918 | NMI: 0.3484 | Sil: 0.0832
+[F2_VarianceWeight | Seed 1234] Pre-train Epoch 250/250 | Loss: 105.6370 | ARI: 0.1916 | NMI: 0.3480 | Sil: 0.0835
+[F2_VarianceWeight | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2430 @ Ep 26)...
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 107.6704 | KL: 0.2082 | ARI: 0.2485 | NMI: 0.3555 | Sil: 0.0439
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 104.6806 | KL: 0.1979 | ARI: 0.2013 | NMI: 0.3514 | Sil: 0.0348
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 102.0879 | KL: 0.1858 | ARI: 0.1845 | NMI: 0.3514 | Sil: 0.0178
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 99.9311 | KL: 0.1744 | ARI: 0.2025 | NMI: 0.3561 | Sil: 0.0287
+[F2_VarianceWeight | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 98.0102 | KL: 0.1664 | ARI: 0.2127 | NMI: 0.3529 | Sil: 0.0490
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F2_VarianceWeight | Seed: 1234 | Dataset: 10x_human_lymph_node_D1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 193/200   │ 0.0499       │ 0.2128       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 2/200     │ 0.0439       │ 0.2490       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0490       │ 0.2127       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 26/250    │ 0.2430       │ 0.2381       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 5/250     │ 0.1406       │ 0.2936       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 159.85s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F2_VarianceWeight | Seed 1234 => DEC Best Sil: 0.0499 (Corr ARI: 0.2128) | DEC Best ARI: 0.2490 (Corr Sil: 0.0439) | Last Ep ARI: 0.2127 | Time: 159.8s
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch   1/250 | Loss: 364.5804 | ARI: 0.2266 | NMI: 0.3037 | Sil: 0.1172
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch  50/250 | Loss: 168.3592 | ARI: 0.2369 | NMI: 0.3605 | Sil: 0.1931
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch 100/250 | Loss: 129.7206 | ARI: 0.2084 | NMI: 0.3545 | Sil: 0.1128
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch 150/250 | Loss: 115.2584 | ARI: 0.1845 | NMI: 0.3419 | Sil: 0.0973
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch 200/250 | Loss: 109.2271 | ARI: 0.1903 | NMI: 0.3477 | Sil: 0.0930
+[F2_VarianceWeight | Seed 2024] Pre-train Epoch 250/250 | Loss: 105.6697 | ARI: 0.1883 | NMI: 0.3492 | Sil: 0.0868
+[F2_VarianceWeight | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2833 @ Ep 27)...
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 107.8244 | KL: 0.2398 | ARI: 0.2090 | NMI: 0.3186 | Sil: 0.0765
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 104.8182 | KL: 0.2285 | ARI: 0.2012 | NMI: 0.3173 | Sil: 0.0600
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 102.2753 | KL: 0.2150 | ARI: 0.1997 | NMI: 0.3216 | Sil: 0.0539
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 99.9599 | KL: 0.2034 | ARI: 0.2071 | NMI: 0.3247 | Sil: 0.0566
+[F2_VarianceWeight | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 97.8694 | KL: 0.1941 | ARI: 0.2126 | NMI: 0.3260 | Sil: 0.0654
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F2_VarianceWeight | Seed: 2024 | Dataset: 10x_human_lymph_node_D1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.0765       │ 0.2090       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 196/200   │ 0.0654       │ 0.2133       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0654       │ 0.2126       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 27/250    │ 0.2833       │ 0.2485       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 37/250    │ 0.2604       │ 0.2828       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 157.53s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F2_VarianceWeight | Seed 2024 => DEC Best Sil: 0.0765 (Corr ARI: 0.2090) | DEC Best ARI: 0.2133 (Corr Sil: 0.0654) | Last Ep ARI: 0.2126 | Time: 157.5s
+
+----------------------------------------------------------------------
+---------- VARIANT: F3_SpatialCrossAttention on 10x_human_lymph_node_D1 ----------
+----------------------------------------------------------------------
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch   1/250 | Loss: 364.9143 | ARI: 0.1931 | NMI: 0.2847 | Sil: 0.1073
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch  50/250 | Loss: 165.6186 | ARI: 0.2182 | NMI: 0.3539 | Sil: 0.1680
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch 100/250 | Loss: 124.4084 | ARI: 0.2162 | NMI: 0.3527 | Sil: 0.1012
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch 150/250 | Loss: 111.6546 | ARI: 0.2168 | NMI: 0.3534 | Sil: 0.0980
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch 200/250 | Loss: 106.6835 | ARI: 0.1984 | NMI: 0.3470 | Sil: 0.0790
+[F3_SpatialCrossAttention | Seed 42] Pre-train Epoch 250/250 | Loss: 103.2294 | ARI: 0.2204 | NMI: 0.3566 | Sil: 0.0883
+[F3_SpatialCrossAttention | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2629 @ Ep 23)...
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 106.4604 | KL: 0.2109 | ARI: 0.2580 | NMI: 0.3512 | Sil: 0.0758
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 103.4375 | KL: 0.2022 | ARI: 0.2275 | NMI: 0.3470 | Sil: 0.0622
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 100.9226 | KL: 0.1951 | ARI: 0.1994 | NMI: 0.3375 | Sil: 0.0484
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 98.6439 | KL: 0.1873 | ARI: 0.1984 | NMI: 0.3391 | Sil: 0.0399
+[F3_SpatialCrossAttention | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 96.6906 | KL: 0.1810 | ARI: 0.2001 | NMI: 0.3369 | Sil: 0.0363
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F3_SpatialCrossAttention | Seed: 42 | Dataset: 10x_human_lymph_node_D1 │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 1/200     │ 0.0758       │ 0.2580       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 1/200     │ 0.0758       │ 0.2580       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0363       │ 0.2001       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 23/250    │ 0.2629       │ 0.2465       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 29/250    │ 0.2464       │ 0.2640       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 165.07s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F3_SpatialCrossAttention | Seed 42 => DEC Best Sil: 0.0758 (Corr ARI: 0.2580) | DEC Best ARI: 0.2580 (Corr Sil: 0.0758) | Last Ep ARI: 0.2001 | Time: 165.1s
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch   1/250 | Loss: 365.6806 | ARI: 0.2798 | NMI: 0.3196 | Sil: 0.1216
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch  50/250 | Loss: 162.9323 | ARI: 0.2514 | NMI: 0.3584 | Sil: 0.1692
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch 100/250 | Loss: 123.5927 | ARI: 0.2075 | NMI: 0.3441 | Sil: 0.0884
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch 150/250 | Loss: 111.4807 | ARI: 0.2003 | NMI: 0.3506 | Sil: 0.0847
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch 200/250 | Loss: 106.6111 | ARI: 0.2098 | NMI: 0.3495 | Sil: 0.0782
+[F3_SpatialCrossAttention | Seed 1234] Pre-train Epoch 250/250 | Loss: 103.2700 | ARI: 0.2015 | NMI: 0.3472 | Sil: 0.0732
+[F3_SpatialCrossAttention | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2485 @ Ep 24)...
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 106.2830 | KL: 0.2366 | ARI: 0.1979 | NMI: 0.3547 | Sil: 0.0527
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 103.3034 | KL: 0.2315 | ARI: 0.2029 | NMI: 0.3565 | Sil: 0.0365
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 100.7766 | KL: 0.2255 | ARI: 0.2262 | NMI: 0.3602 | Sil: 0.0353
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 98.5068 | KL: 0.2202 | ARI: 0.2341 | NMI: 0.3582 | Sil: 0.0298
+[F3_SpatialCrossAttention | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 96.5536 | KL: 0.2169 | ARI: 0.2438 | NMI: 0.3592 | Sil: 0.0331
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F3_SpatialCrossAttention | Seed: 1234 | Dataset: 10x_human_lymph_node_D1 │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 2/200     │ 0.0527       │ 0.1975       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 199/200   │ 0.0330       │ 0.2447       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0331       │ 0.2438       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 24/250    │ 0.2485       │ 0.2384       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 3/250     │ 0.1249       │ 0.2972       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 164.51s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F3_SpatialCrossAttention | Seed 1234 => DEC Best Sil: 0.0527 (Corr ARI: 0.1975) | DEC Best ARI: 0.2447 (Corr Sil: 0.0330) | Last Ep ARI: 0.2438 | Time: 164.5s
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch   1/250 | Loss: 364.7893 | ARI: 0.1770 | NMI: 0.2638 | Sil: 0.0998
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch  50/250 | Loss: 162.4553 | ARI: 0.2591 | NMI: 0.3632 | Sil: 0.1652
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch 100/250 | Loss: 122.7669 | ARI: 0.2143 | NMI: 0.3557 | Sil: 0.0897
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch 150/250 | Loss: 111.2714 | ARI: 0.2064 | NMI: 0.3475 | Sil: 0.0796
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch 200/250 | Loss: 106.4742 | ARI: 0.2243 | NMI: 0.3573 | Sil: 0.0913
+[F3_SpatialCrossAttention | Seed 2024] Pre-train Epoch 250/250 | Loss: 103.1119 | ARI: 0.2356 | NMI: 0.3633 | Sil: 0.0821
+[F3_SpatialCrossAttention | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.2712 @ Ep 23)...
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 106.2647 | KL: 0.2320 | ARI: 0.2262 | NMI: 0.3435 | Sil: 0.0736
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 103.1889 | KL: 0.2253 | ARI: 0.2200 | NMI: 0.3388 | Sil: 0.0579
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 100.5946 | KL: 0.2188 | ARI: 0.2226 | NMI: 0.3342 | Sil: 0.0536
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 98.2384 | KL: 0.2119 | ARI: 0.2269 | NMI: 0.3371 | Sil: 0.0457
+[F3_SpatialCrossAttention | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 96.2583 | KL: 0.2057 | ARI: 0.2301 | NMI: 0.3338 | Sil: 0.0422
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F3_SpatialCrossAttention | Seed: 2024 | Dataset: 10x_human_lymph_node_D1 │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 4/200     │ 0.0736       │ 0.2259       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 198/200   │ 0.0418       │ 0.2313       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0422       │ 0.2301       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 23/250    │ 0.2712       │ 0.2482       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 12/250    │ 0.2364       │ 0.2668       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 164.81s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F3_SpatialCrossAttention | Seed 2024 => DEC Best Sil: 0.0736 (Corr ARI: 0.2259) | DEC Best ARI: 0.2313 (Corr Sil: 0.0418) | Last Ep ARI: 0.2301 | Time: 164.8s
+
+----------------------------------------------------------------------
+---------- VARIANT: F4_BilinearTensor on 10x_human_lymph_node_D1 ----------
+----------------------------------------------------------------------
+[F4_BilinearTensor | Seed 42] Pre-train Epoch   1/250 | Loss: 367.3886 | ARI: 0.1185 | NMI: 0.2623 | Sil: 0.1216
+[F4_BilinearTensor | Seed 42] Pre-train Epoch  50/250 | Loss: 156.2460 | ARI: 0.1520 | NMI: 0.3160 | Sil: 0.0852
+[F4_BilinearTensor | Seed 42] Pre-train Epoch 100/250 | Loss: 117.2014 | ARI: 0.1571 | NMI: 0.3179 | Sil: 0.0454
+[F4_BilinearTensor | Seed 42] Pre-train Epoch 150/250 | Loss: 109.9858 | ARI: 0.1660 | NMI: 0.3281 | Sil: 0.0388
+[F4_BilinearTensor | Seed 42] Pre-train Epoch 200/250 | Loss: 105.8898 | ARI: 0.1694 | NMI: 0.3375 | Sil: 0.0380
+[F4_BilinearTensor | Seed 42] Pre-train Epoch 250/250 | Loss: 102.9802 | ARI: 0.1563 | NMI: 0.3210 | Sil: 0.0392
+[F4_BilinearTensor | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1559 @ Ep 21)...
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 103.5219 | KL: 0.0737 | ARI: 0.3081 | NMI: 0.2923 | Sil: 0.0235
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 100.8968 | KL: 0.0626 | ARI: 0.2958 | NMI: 0.2873 | Sil: 0.0254
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 98.9852 | KL: 0.0539 | ARI: 0.2918 | NMI: 0.2895 | Sil: 0.0291
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 96.4687 | KL: 0.0473 | ARI: 0.2895 | NMI: 0.2912 | Sil: 0.0331
+[F4_BilinearTensor | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 94.6792 | KL: 0.0419 | ARI: 0.2844 | NMI: 0.2929 | Sil: 0.0344
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F4_BilinearTensor | Seed: 42 | Dataset: 10x_human_lymph_node_D1      │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 178/200   │ 0.0359       │ 0.2906       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 12/200    │ 0.0240       │ 0.3107       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0344       │ 0.2844       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 21/250    │ 0.1559       │ 0.1791       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 20/250    │ 0.1545       │ 0.1813       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 159.27s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F4_BilinearTensor | Seed 42 => DEC Best Sil: 0.0359 (Corr ARI: 0.2906) | DEC Best ARI: 0.3107 (Corr Sil: 0.0240) | Last Ep ARI: 0.2844 | Time: 159.3s
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch   1/250 | Loss: 365.3043 | ARI: 0.1335 | NMI: 0.2721 | Sil: 0.1119
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch  50/250 | Loss: 155.3976 | ARI: 0.1475 | NMI: 0.3042 | Sil: 0.0844
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch 100/250 | Loss: 117.1738 | ARI: 0.1454 | NMI: 0.3112 | Sil: 0.0426
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch 150/250 | Loss: 109.9338 | ARI: 0.1654 | NMI: 0.3325 | Sil: 0.0384
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch 200/250 | Loss: 105.9570 | ARI: 0.1508 | NMI: 0.3116 | Sil: 0.0320
+[F4_BilinearTensor | Seed 1234] Pre-train Epoch 250/250 | Loss: 102.9103 | ARI: 0.1618 | NMI: 0.3247 | Sil: 0.0353
+[F4_BilinearTensor | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1446 @ Ep 19)...
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 103.3785 | KL: 0.0510 | ARI: 0.2977 | NMI: 0.3117 | Sil: 0.0338
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 100.7196 | KL: 0.0428 | ARI: 0.2901 | NMI: 0.3026 | Sil: 0.0392
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 98.3579 | KL: 0.0359 | ARI: 0.2785 | NMI: 0.2959 | Sil: 0.0423
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 96.4468 | KL: 0.0310 | ARI: 0.2725 | NMI: 0.2891 | Sil: 0.0451
+[F4_BilinearTensor | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 94.6220 | KL: 0.0269 | ARI: 0.2662 | NMI: 0.2838 | Sil: 0.0473
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F4_BilinearTensor | Seed: 1234 | Dataset: 10x_human_lymph_node_D1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 193/200   │ 0.0477       │ 0.2699       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 3/200     │ 0.0341       │ 0.2981       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0473       │ 0.2662       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 19/250    │ 0.1446       │ 0.1670       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 138/250   │ 0.0386       │ 0.1816       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 160.33s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F4_BilinearTensor | Seed 1234 => DEC Best Sil: 0.0477 (Corr ARI: 0.2699) | DEC Best ARI: 0.2981 (Corr Sil: 0.0341) | Last Ep ARI: 0.2662 | Time: 160.3s
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch   1/250 | Loss: 367.0186 | ARI: 0.1365 | NMI: 0.2660 | Sil: 0.1117
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch  50/250 | Loss: 151.8825 | ARI: 0.1381 | NMI: 0.2990 | Sil: 0.0800
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch 100/250 | Loss: 116.6038 | ARI: 0.1496 | NMI: 0.3107 | Sil: 0.0405
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch 150/250 | Loss: 109.7980 | ARI: 0.1668 | NMI: 0.3278 | Sil: 0.0331
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch 200/250 | Loss: 105.8059 | ARI: 0.1654 | NMI: 0.3329 | Sil: 0.0299
+[F4_BilinearTensor | Seed 2024] Pre-train Epoch 250/250 | Loss: 102.8046 | ARI: 0.1592 | NMI: 0.3211 | Sil: 0.0345
+[F4_BilinearTensor | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1566 @ Ep 16)...
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 103.2768 | KL: 0.0666 | ARI: 0.2101 | NMI: 0.2527 | Sil: 0.0323
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 100.6695 | KL: 0.0558 | ARI: 0.2069 | NMI: 0.2500 | Sil: 0.0326
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 98.4168 | KL: 0.0466 | ARI: 0.2054 | NMI: 0.2480 | Sil: 0.0336
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 96.4096 | KL: 0.0396 | ARI: 0.2050 | NMI: 0.2457 | Sil: 0.0350
+[F4_BilinearTensor | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 94.6958 | KL: 0.0341 | ARI: 0.2061 | NMI: 0.2444 | Sil: 0.0346
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F4_BilinearTensor | Seed: 2024 | Dataset: 10x_human_lymph_node_D1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 199/200   │ 0.0368       │ 0.2061       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 20/200    │ 0.0307       │ 0.2143       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0346       │ 0.2061       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 16/250    │ 0.1566       │ 0.1676       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 114/250   │ 0.0354       │ 0.1753       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 162.66s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F4_BilinearTensor | Seed 2024 => DEC Best Sil: 0.0368 (Corr ARI: 0.2061) | DEC Best ARI: 0.2143 (Corr Sil: 0.0307) | Last Ep ARI: 0.2061 | Time: 162.7s
+
+----------------------------------------------------------------------
+---------- VARIANT: F5_GatedMultiModal on 10x_human_lymph_node_D1 ----------
+----------------------------------------------------------------------
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch   1/250 | Loss: 366.2736 | ARI: 0.1148 | NMI: 0.2544 | Sil: 0.1146
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch  50/250 | Loss: 156.8512 | ARI: 0.1561 | NMI: 0.3245 | Sil: 0.0988
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch 100/250 | Loss: 119.7622 | ARI: 0.1452 | NMI: 0.3156 | Sil: 0.0588
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch 150/250 | Loss: 112.1194 | ARI: 0.1656 | NMI: 0.3342 | Sil: 0.0564
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch 200/250 | Loss: 107.6457 | ARI: 0.1588 | NMI: 0.3333 | Sil: 0.0503
+[F5_GatedMultiModal | Seed 42] Pre-train Epoch 250/250 | Loss: 104.3290 | ARI: 0.1671 | NMI: 0.3365 | Sil: 0.0512
+[F5_GatedMultiModal | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1433 @ Ep 22)...
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 104.8555 | KL: 0.0871 | ARI: 0.2526 | NMI: 0.3064 | Sil: 0.0414
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 101.7908 | KL: 0.0705 | ARI: 0.2461 | NMI: 0.3038 | Sil: 0.0437
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 99.1694 | KL: 0.0593 | ARI: 0.2267 | NMI: 0.2985 | Sil: 0.0449
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 96.9153 | KL: 0.0503 | ARI: 0.2178 | NMI: 0.2947 | Sil: 0.0443
+[F5_GatedMultiModal | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 95.1399 | KL: 0.0432 | ARI: 0.1994 | NMI: 0.2930 | Sil: 0.0433
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F5_GatedMultiModal | Seed: 42 | Dataset: 10x_human_lymph_node_D1     │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 116/200   │ 0.0451       │ 0.2258       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 2/200     │ 0.0407       │ 0.2564       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0433       │ 0.1994       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 22/250    │ 0.1433       │ 0.1744       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 195/250   │ 0.0572       │ 0.1947       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 161.59s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F5_GatedMultiModal | Seed 42 => DEC Best Sil: 0.0451 (Corr ARI: 0.2258) | DEC Best ARI: 0.2564 (Corr Sil: 0.0407) | Last Ep ARI: 0.1994 | Time: 161.6s
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch   1/250 | Loss: 366.8776 | ARI: 0.1304 | NMI: 0.2698 | Sil: 0.1077
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch  50/250 | Loss: 156.2519 | ARI: 0.1457 | NMI: 0.2991 | Sil: 0.0895
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch 100/250 | Loss: 119.8963 | ARI: 0.1514 | NMI: 0.3087 | Sil: 0.0567
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch 150/250 | Loss: 112.3085 | ARI: 0.1526 | NMI: 0.3136 | Sil: 0.0516
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch 200/250 | Loss: 107.8771 | ARI: 0.1693 | NMI: 0.3379 | Sil: 0.0473
+[F5_GatedMultiModal | Seed 1234] Pre-train Epoch 250/250 | Loss: 104.3329 | ARI: 0.1727 | NMI: 0.3302 | Sil: 0.0458
+[F5_GatedMultiModal | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1568 @ Ep 16)...
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 104.8069 | KL: 0.0841 | ARI: 0.2534 | NMI: 0.2723 | Sil: 0.0314
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 102.0599 | KL: 0.0703 | ARI: 0.2598 | NMI: 0.2752 | Sil: 0.0343
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 99.2388 | KL: 0.0595 | ARI: 0.2570 | NMI: 0.2725 | Sil: 0.0359
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 97.0780 | KL: 0.0504 | ARI: 0.2502 | NMI: 0.2651 | Sil: 0.0368
+[F5_GatedMultiModal | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 95.1169 | KL: 0.0428 | ARI: 0.2468 | NMI: 0.2584 | Sil: 0.0358
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F5_GatedMultiModal | Seed: 1234 | Dataset: 10x_human_lymph_node_D1   │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 175/200   │ 0.0377       │ 0.2535       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 66/200    │ 0.0342       │ 0.2624       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0358       │ 0.2468       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 16/250    │ 0.1568       │ 0.1802       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 15/250    │ 0.1485       │ 0.1838       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 164.48s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F5_GatedMultiModal | Seed 1234 => DEC Best Sil: 0.0377 (Corr ARI: 0.2535) | DEC Best ARI: 0.2624 (Corr Sil: 0.0342) | Last Ep ARI: 0.2468 | Time: 164.5s
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch   1/250 | Loss: 365.0481 | ARI: 0.1227 | NMI: 0.2612 | Sil: 0.1067
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch  50/250 | Loss: 155.5864 | ARI: 0.1389 | NMI: 0.2976 | Sil: 0.0910
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch 100/250 | Loss: 119.9718 | ARI: 0.1616 | NMI: 0.3281 | Sil: 0.0546
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch 150/250 | Loss: 112.1894 | ARI: 0.1611 | NMI: 0.3302 | Sil: 0.0514
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch 200/250 | Loss: 107.6041 | ARI: 0.1651 | NMI: 0.3380 | Sil: 0.0488
+[F5_GatedMultiModal | Seed 2024] Pre-train Epoch 250/250 | Loss: 104.1794 | ARI: 0.1667 | NMI: 0.3401 | Sil: 0.0483
+[F5_GatedMultiModal | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1501 @ Ep 23)...
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 104.6255 | KL: 0.0817 | ARI: 0.2073 | NMI: 0.3050 | Sil: 0.0448
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 101.6391 | KL: 0.0663 | ARI: 0.2304 | NMI: 0.3075 | Sil: 0.0479
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 99.1956 | KL: 0.0546 | ARI: 0.2557 | NMI: 0.3090 | Sil: 0.0504
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 96.9969 | KL: 0.0451 | ARI: 0.2705 | NMI: 0.3050 | Sil: 0.0513
+[F5_GatedMultiModal | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 95.2886 | KL: 0.0375 | ARI: 0.2904 | NMI: 0.3064 | Sil: 0.0519
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F5_GatedMultiModal | Seed: 2024 | Dataset: 10x_human_lymph_node_D1   │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 199/200   │ 0.0526       │ 0.2897       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 198/200   │ 0.0520       │ 0.2927       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0519       │ 0.2904       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 23/250    │ 0.1501       │ 0.1608       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 183/250   │ 0.0564       │ 0.1933       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 162.42s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F5_GatedMultiModal | Seed 2024 => DEC Best Sil: 0.0526 (Corr ARI: 0.2897) | DEC Best ARI: 0.2927 (Corr Sil: 0.0520) | Last Ep ARI: 0.2904 | Time: 162.4s
+
+----------------------------------------------------------------------
+---------- VARIANT: F6_QKVCrossFusion on 10x_human_lymph_node_D1 ----------
+----------------------------------------------------------------------
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch   1/250 | Loss: 366.1632 | ARI: 0.1188 | NMI: 0.2544 | Sil: 0.1298
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch  50/250 | Loss: 155.1504 | ARI: 0.1383 | NMI: 0.2955 | Sil: 0.0838
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch 100/250 | Loss: 119.1614 | ARI: 0.1460 | NMI: 0.3088 | Sil: 0.0471
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch 150/250 | Loss: 110.9975 | ARI: 0.1554 | NMI: 0.3074 | Sil: 0.0426
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch 200/250 | Loss: 106.7187 | ARI: 0.1561 | NMI: 0.3188 | Sil: 0.0391
+[F6_QKVCrossFusion | Seed 42] Pre-train Epoch 250/250 | Loss: 103.5756 | ARI: 0.1413 | NMI: 0.3031 | Sil: 0.0337
+[F6_QKVCrossFusion | Seed 42] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1598 @ Ep 17)...
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch   1/200 | Loss: 104.0367 | KL: 0.0638 | ARI: 0.2529 | NMI: 0.3030 | Sil: 0.0141
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch  50/200 | Loss: 101.4390 | KL: 0.0529 | ARI: 0.2581 | NMI: 0.3049 | Sil: 0.0203
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch 100/200 | Loss: 99.1894 | KL: 0.0440 | ARI: 0.2596 | NMI: 0.3067 | Sil: 0.0259
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch 150/200 | Loss: 97.1165 | KL: 0.0374 | ARI: 0.2616 | NMI: 0.3061 | Sil: 0.0302
+[F6_QKVCrossFusion | Seed 42] DEC Fine-tune Epoch 200/200 | Loss: 95.3072 | KL: 0.0322 | ARI: 0.2755 | NMI: 0.3094 | Sil: 0.0343
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F6_QKVCrossFusion | Seed: 42 | Dataset: 10x_human_lymph_node_D1      │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 200/200   │ 0.0343       │ 0.2755       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 174/200   │ 0.0325       │ 0.2800       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0343       │ 0.2755       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 17/250    │ 0.1598       │ 0.1640       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 155/250   │ 0.0346       │ 0.1822       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 164.73s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F6_QKVCrossFusion | Seed 42 => DEC Best Sil: 0.0343 (Corr ARI: 0.2755) | DEC Best ARI: 0.2800 (Corr Sil: 0.0325) | Last Ep ARI: 0.2755 | Time: 164.7s
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch   1/250 | Loss: 367.6377 | ARI: 0.1393 | NMI: 0.2792 | Sil: 0.1131
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch  50/250 | Loss: 155.8934 | ARI: 0.1503 | NMI: 0.3096 | Sil: 0.0834
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch 100/250 | Loss: 119.5396 | ARI: 0.1500 | NMI: 0.3139 | Sil: 0.0482
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch 150/250 | Loss: 110.7083 | ARI: 0.1442 | NMI: 0.3064 | Sil: 0.0399
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch 200/250 | Loss: 106.4752 | ARI: 0.1428 | NMI: 0.2999 | Sil: 0.0397
+[F6_QKVCrossFusion | Seed 1234] Pre-train Epoch 250/250 | Loss: 103.4065 | ARI: 0.1423 | NMI: 0.2956 | Sil: 0.0383
+[F6_QKVCrossFusion | Seed 1234] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1790 @ Ep 14)...
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch   1/200 | Loss: 103.8666 | KL: 0.0445 | ARI: 0.2448 | NMI: 0.2873 | Sil: 0.0429
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch  50/200 | Loss: 101.2315 | KL: 0.0382 | ARI: 0.2377 | NMI: 0.2818 | Sil: 0.0460
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch 100/200 | Loss: 98.9050 | KL: 0.0320 | ARI: 0.2262 | NMI: 0.2699 | Sil: 0.0478
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch 150/200 | Loss: 97.1309 | KL: 0.0280 | ARI: 0.2227 | NMI: 0.2654 | Sil: 0.0508
+[F6_QKVCrossFusion | Seed 1234] DEC Fine-tune Epoch 200/200 | Loss: 95.2929 | KL: 0.0244 | ARI: 0.2212 | NMI: 0.2625 | Sil: 0.0510
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F6_QKVCrossFusion | Seed: 1234 | Dataset: 10x_human_lymph_node_D1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 186/200   │ 0.0533       │ 0.2237       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 5/200     │ 0.0438       │ 0.2505       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0510       │ 0.2212       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 14/250    │ 0.1790       │ 0.1856       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 15/250    │ 0.1764       │ 0.1897       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 164.74s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F6_QKVCrossFusion | Seed 1234 => DEC Best Sil: 0.0533 (Corr ARI: 0.2237) | DEC Best ARI: 0.2505 (Corr Sil: 0.0438) | Last Ep ARI: 0.2212 | Time: 164.7s
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch   1/250 | Loss: 365.4244 | ARI: 0.1206 | NMI: 0.2589 | Sil: 0.1130
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch  50/250 | Loss: 154.0312 | ARI: 0.1363 | NMI: 0.2992 | Sil: 0.0836
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch 100/250 | Loss: 118.3567 | ARI: 0.1464 | NMI: 0.3070 | Sil: 0.0444
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch 150/250 | Loss: 110.4262 | ARI: 0.1698 | NMI: 0.3353 | Sil: 0.0415
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch 200/250 | Loss: 106.4017 | ARI: 0.1639 | NMI: 0.3287 | Sil: 0.0382
+[F6_QKVCrossFusion | Seed 2024] Pre-train Epoch 250/250 | Loss: 103.3850 | ARI: 0.1618 | NMI: 0.3101 | Sil: 0.0394
+[F6_QKVCrossFusion | Seed 2024] Initializing Cluster Centers from best pre-train representation (Pre-train Best Sil: 0.1537 @ Ep 19)...
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch   1/200 | Loss: 103.8786 | KL: 0.0603 | ARI: 0.2287 | NMI: 0.2754 | Sil: 0.0381
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch  50/200 | Loss: 101.3428 | KL: 0.0487 | ARI: 0.2411 | NMI: 0.2780 | Sil: 0.0399
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch 100/200 | Loss: 99.1510 | KL: 0.0407 | ARI: 0.2435 | NMI: 0.2784 | Sil: 0.0431
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch 150/200 | Loss: 96.9427 | KL: 0.0346 | ARI: 0.2489 | NMI: 0.2785 | Sil: 0.0431
+[F6_QKVCrossFusion | Seed 2024] DEC Fine-tune Epoch 200/200 | Loss: 95.3594 | KL: 0.0296 | ARI: 0.2497 | NMI: 0.2773 | Sil: 0.0430
+
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│ 📊 SEED SUMMARY: F6_QKVCrossFusion | Seed: 2024 | Dataset: 10x_human_lymph_node_D1    │
+├───────────────────────────────┬───────────────┬────────────┬────────────┬────────────┤
+│ Evaluation Category             │ Phase           │ Epoch        │ Silhouette   │ ARI          │
+├───────────────────────────────┼───────────────┼────────────┼────────────┼────────────┤
+│ 🎯 DEC Best Silhouette (Selected) │ DEC Fine-tune   │ Ep 121/200   │ 0.0433       │ 0.2445       │
+│ 🏆 DEC Best ARI Observed         │ DEC Fine-tune   │ Ep 196/200   │ 0.0430       │ 0.2537       │
+│ 🏁 DEC Last Epoch (Terminal)     │ DEC Fine-tune   │ Ep 200/200   │ 0.0430       │ 0.2497       │
+│ 🌱 Pre-train Best Silhouette     │ Pre-training    │ Ep 19/250    │ 0.1537       │ 0.1703       │
+│ 🌿 Pre-train Best ARI            │ Pre-training    │ Ep 12/250    │ 0.1426       │ 0.1944       │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ ⏱️  Total Training Runtime: 164.16s                                                        │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+>> [RESULT] 10x_human_lymph_node_D1 | F6_QKVCrossFusion | Seed 2024 => DEC Best Sil: 0.0433 (Corr ARI: 0.2445) | DEC Best ARI: 0.2537 (Corr Sil: 0.0430) | Last Ep ARI: 0.2497 | Time: 164.2s
+
